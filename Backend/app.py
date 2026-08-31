@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from property import calculate_rate
 
 app = Flask(__name__)
@@ -11,14 +11,35 @@ def home():
 
 @app.route("/property-rate")
 def property_rate():
-    price = 5000000
-    area = 1500
+
+    city = request.args.get("city")
+    property_type = request.args.get("property_type")
+    bedrooms = request.args.get("bedrooms")
+
+    price = request.args.get("price")
+    area = request.args.get("area")
+
+    if not price or not area:
+        return jsonify({
+            "error": "Price and area are required"
+        }), 400
+
+    price = float(price)
+    area = float(area)
+
+    if price <= 0 or area <= 0:
+        return jsonify({
+            "error": "Price and area must be greater than zero"
+        }), 400
 
     rate = calculate_rate(price, area)
 
     return jsonify({
+        "city": city,
+        "property_type": property_type,
         "price": price,
         "area": area,
+        "bedrooms": bedrooms,
         "rate_per_sqft": rate
     })
 

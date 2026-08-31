@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>AI Real Estate Platform</title>
     <link rel="stylesheet" href="style.css">
@@ -14,29 +15,39 @@
     <h2>Search Properties</h2>
 
     <label>City:</label>
-    <input type="text" placeholder="Enter city">
+    <input type="text" id="city" placeholder="Enter city">
 
     <br><br>
 
     <label>Property Type:</label>
-    <select>
+    <select id="propertyType">
         <option>Plot</option>
         <option>Apartment</option>
         <option>House</option>
-        <option>commercial</option>
     </select>
 
     <br><br>
 
     <label>Maximum Budget:</label>
-    <input type="number" placeholder="Enter your budget">
+    <input type="number" id="budget" placeholder="Enter your budget">
+
+    <br><br>
+
+    <label>Area in sq ft:</label>
+    <input type="number" id="area" placeholder="Enter area">
+
+    <br><br>
+
+    <label>Number of Bedrooms:</label>
+    <input type="number" id="bedrooms" placeholder="Enter bedrooms">
 
     <br><br>
 
     <button id="searchButton">Search Properties</button>
-    <input type="number">
 
+    <div id="result"></div>
     <script src="script.js"></script>
 
 </body>
+
 </html>
