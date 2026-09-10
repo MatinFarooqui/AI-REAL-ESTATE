@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Property Details | AI Estate</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #f7f8fa;
+            color: #17202a;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .navbar {
+            height: 76px;
+            background: #ffffff;
+            border-bottom: 1px solid #e7e9ed;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+        }
+
+        .logo {
+            font-family: "Manrope", sans-serif;
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #3157d5;
+        }
+
+        .back-link {
+            font-weight: 600;
+            color: #5d6673;
+        }
+
+        .back-link:hover {
+            color: #3157d5;
+        }
+
+        .container {
+            width: min(1180px, 90%);
+            margin: auto;
+        }
+
+        .breadcrumbs {
+            padding: 28px 0 20px;
+            color: #7a8491;
+            font-size: 14px;
+        }
+
+        .property-layout {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 32px;
+            padding-bottom: 60px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 520px;
+            object-fit: cover;
+            border-radius: 24px;
+            display: block;
+        }
+
+        .details-panel {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 34px;
+            border: 1px solid #e6e8ec;
+            align-self: start;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 13px;
+            background: #eef2ff;
+            color: #3157d5;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-family: "Manrope", sans-serif;
+            font-size: 38px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .location {
+            color: #687381;
+            margin-bottom: 26px;
+            font-size: 16px;
+        }
+
+        .price {
+            font-family: "Manrope", sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 28px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .stat {
+            padding: 17px;
+            background: #f6f7f9;
+            border-radius: 14px;
+        }
+
+        .stat span {
+            display: block;
+            color: #7a8491;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .stat strong {
+            font-size: 16px;
+        }
+
+        .ai-box {
+            background: #111827;
+            color: white;
+            border-radius: 18px;
+            padding: 22px;
+            margin-top: 8px;
+        }
+
+        .ai-box small {
+            color: #aeb8c7;
+        }
+
+        .ai-score {
+            font-size: 30px;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .section {
+            background: #ffffff;
+            border: 1px solid #e6e8ec;
+            border-radius: 24px;
+            padding: 34px;
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            color: #687381;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .feature {
+            background: #f6f7f9;
+            padding: 18px;
+            border-radius: 14px;
+        }
+
+        .feature strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .feature span {
+            color: #727c89;
+            font-size: 14px;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .cta h2 {
+            margin-bottom: 10px;
+        }
+
+        .primary-button {
+            display: inline-block;
+            margin-top: 22px;
+            background: #3157d5;
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .primary-button:hover {
+            background: #2445b5;
+        }
+
+        @media (max-width: 850px) {
+
+            .property-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 360px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .details-panel,
+            .section {
+                padding: 24px;
+            }
+
+            .stats,
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            AI <span>Estate</span>
+        </a>
+
+        <a href="index.html" class="back-link">
+            ← Back to Search
+        </a>
+
+    </nav>
+
+
+    <main class="container">
+
+
+        <div class="breadcrumbs">
+            AI Estate &nbsp; / &nbsp; Property Details
+        </div>
+
+
+        <section class="property-layout">
+
+
+            <div>
+
+                <img
+                    id="propertyImage"
+                    class="main-image"
+                    src=""
+                    alt="Property"
+                >
+
+            </div>
+
+
+            <div class="details-panel">
+
+                <span
+                    id="propertyType"
+                    class="badge"
+                >
+                    PROPERTY
+                </span>
+
+
+                <h1 id="propertyTitle">
+                    Property
+                </h1>
+
+
+                <p
+                    id="propertyLocation"
+                    class="location"
+                >
+                    📍 Location
+                </p>
+
+
+                <div
+                    id="propertyPrice"
+                    class="price"
+                >
+                    ₹0
+                </div>
+
+
+                <div class="stats">
+
+
+                    <div class="stat">
+
+                        <span>Area</span>
+
+                        <strong id="propertyArea">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div
+                        class="stat"
+                        id="bedroomStat"
+                    >
+
+                        <span>Bedrooms</span>
+
+                        <strong id="propertyBedrooms">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <span>Bathrooms</span>
+
+                        <strong id="propertyBathrooms">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <span>Parking</span>
+
+                        <strong id="propertyParking">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="ai-box">
+
+                    <small>
+                        AI PROPERTY MATCH
+                    </small>
+
+                    <div
+                        id="aiScore"
+                        class="ai-score"
+                    >
+                        0%
+                    </div>
+
+                    <small>
+                        Based on your search requirements
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="section">
+
+            <h2>
+                Property Overview
+            </h2>
+
+            <p id="overview">
+                Loading property information...
+            </p>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <strong>Furnishing</strong>
+
+                    <span id="furnishing">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>Property Age</strong>
+
+                    <span id="propertyAge">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>Property ID</strong>
+
+                    <span id="propertyId">
+                        -
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <section class="section cta">
+
+            <h2>
+                Looking for something similar?
+            </h2>
+
+            <p>
+                Return to AI Estate and explore more
+                properties based on your requirements.
+            </p>
+
+            <a
+                href="index.html"
+                class="primary-button"
+            >
+                Explore More Properties
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+        const params =
+            new URLSearchParams(window.location.search);
+
+
+        const id =
+            params.get("id");
+
+        const city =
+            params.get("city") || "Unknown City";
+
+        const locality =
+            params.get("locality") || "";
+
+        const propertyType =
+            params.get("property_type") || "Property";
+
+        const area =
+            params.get("area") || "0";
+
+        const budget =
+            params.get("budget") || "0";
+
+        const bedrooms =
+            params.get("bedrooms") || "0";
+
+        const bathrooms =
+            params.get("bathrooms") || "0";
+
+        const parking =
+            params.get("parking") || "0";
+
+        const furnishing =
+            params.get("furnishing") || "Not specified";
+
+        const propertyAge =
+            params.get("property_age") || "0";
+
+        const matchScore =
+            params.get("match_score") || "0";
+
+
+        // --------------------------------------
+        // IMAGE
+        // --------------------------------------
+
+        function getImage(type) {
+
+            const value =
+                type.toLowerCase();
+
+            if (value === "apartment") {
+
+                return "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1400&q=90";
+
+            }
+
+            if (value === "plot") {
+
+                return "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=90";
+
+            }
+
+            return "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=90";
+
+        }
+
+
+        // --------------------------------------
+        // FORMAT PRICE
+        // --------------------------------------
+
+        const formattedPrice =
+            "₹" +
+            Number(budget).toLocaleString("en-IN");
+
+
+        // --------------------------------------
+        // DISPLAY DATA
+        // --------------------------------------
+
+        document.getElementById("propertyImage").src =
+            getImage(propertyType);
+
+
+        document.getElementById("propertyType").textContent =
+            propertyType;
+
+
+        document.getElementById("propertyTitle").textContent =
+            locality || propertyType;
+
+
+        document.getElementById("propertyLocation").textContent =
+            "📍 " +
+            (locality ? locality + ", " : "") +
+            city;
+
+
+        document.getElementById("propertyPrice").textContent =
+            formattedPrice;
+
+
+        document.getElementById("propertyArea").textContent =
+            Number(area).toLocaleString("en-IN") +
+            " sq ft";
+
+
+        document.getElementById("propertyBedrooms").textContent =
+            bedrooms;
+
+
+        document.getElementById("propertyBathrooms").textContent =
+            bathrooms;
+
+
+        document.getElementById("propertyParking").textContent =
+            parking;
+
+
+        document.getElementById("furnishing").textContent =
+            furnishing;
+
+
+        document.getElementById("propertyAge").textContent =
+            propertyAge + " years";
+
+
+        document.getElementById("propertyId").textContent =
+            "#" + id;
+
+
+        document.getElementById("aiScore").textContent =
+            matchScore + "%";
+
+
+        // --------------------------------------
+        // OVERVIEW
+        // --------------------------------------
+
+        let overview = "";
+
+        if (propertyType.toLowerCase() === "plot") {
+
+            overview =
+                `This ${area} sq ft plot is located in ` +
+                `${locality ? locality + ", " : ""}${city}. ` +
+                `The property is suitable for buyers looking ` +
+                `for land within their selected budget.`;
+
+        } else {
+
+            overview =
+                `This ${propertyType.toLowerCase()} is located in ` +
+                `${locality ? locality + ", " : ""}${city}. ` +
+                `The property offers approximately ${area} sq ft ` +
+                `of space with ${bedrooms} bedroom(s) and ` +
+                `${bathrooms} bathroom(s). ` +
+                `The property has been selected by the AI ` +
+                `recommendation system based on the user's ` +
+                `search requirements.`;
+
+        }
+
+
+        document.getElementById("overview").textContent =
+            overview;
+
+
+    </script>
+
+</body>
+
+</html>

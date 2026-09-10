@@ -1,15 +1,25 @@
-city,property_type,area,budget,bedrooms
-Aurangabad,Plot,1000,3000000,0
-Aurangabad,Plot,1500,5000000,0
-Aurangabad,Plot,2000,7000000,0
-Aurangabad,Apartment,1000,4500000,2
-Aurangabad,Apartment,1200,5500000,2
-Aurangabad,Apartment,1500,7000000,3
-Aurangabad,House,1200,6000000,2
-Aurangabad,House,1800,8500000,3
-Aurangabad,House,2200,11000000,4
-Pune,Apartment,900,6500000,2
-Pune,Apartment,1200,8500000,3
-Pune,House,1800,12000000,3
-Mumbai,Apartment,700,10000000,2
-Mumbai,Apartment,1000,15000000,3
+id,city,locality,property_type,area,budget,bedrooms,bathrooms,parking,furnishing,property_age
+1,Aurangabad,Garkheda,Plot,1000,3000000,0,0,0,Not Applicable,0
+2,Aurangabad,Cidco,Plot,1500,5000000,0,0,0,Not Applicable,0
+3,Aurangabad,Wanwadi,Plot,2000,7000000,0,0,0,Not Applicable,0
+4,Aurangabad,Garkheda,Apartment,1000,4500000,2,2,1,Semi-Furnished,5
+5,Aurangabad,Cidco,Apartment,1200,5500000,2,2,1,Furnished,3
+6,Aurangabad,Beed Bypass,Apartment,1500,7000000,3,2,1,Furnished,2
+7,Aurangabad,Garkheda,House,1200,6000000,2,2,1,Semi-Furnished,8
+8,Aurangabad,Cidco,House,1800,8500000,3,3,2,Furnished,4
+9,Aurangabad,Beed Bypass,House,2200,11000000,4,3,2,Furnished,2
+10,Pune,Hinjewadi,Apartment,900,6500000,2,2,1,Furnished,4
+11,Pune,Wakad,Apartment,1200,8500000,3,2,1,Furnished,3
+12,Pune,Baner,House,1800,12000000,3,3,2,Furnished,5
+13,Mumbai,Andheri,Apartment,700,10000000,2,2,1,Furnished,6
+14,Mumbai,Thane,Apartment,1000,15000000,3,2,1,Furnished,3
+15,Nashik,College Road,Apartment,1100,5500000,2,2,1,Semi-Furnished,5
+16,Nashik,Indira Nagar,House,1600,7500000,3,2,1,Furnished,4
+17,Nagpur,Dharampeth,Apartment,1000,5000000,2,2,1,Furnished,6
+18,Nagpur,Manish Nagar,House,1800,8000000,3,3,2,Furnished,3
+19,Hyderabad,Gachibowli,Apartment,1200,9000000,2,2,1,Furnished,4
+20,Hyderabad,Kondapur,Apartment,1500,11000000,3,3,2,Furnished,2
+21,Bengaluru,Whitefield,Apartment,1200,9500000,2,2,1,Furnished,4
+22,Bengaluru,Electronic City,Apartment,1500,8500000,3,2,1,Furnished,5
+23,Delhi,Dwarka,Apartment,1200,9000000,2,2,1,Furnished,7
+24,Delhi,Rohini,House,1800,14000000,3,3,2,Semi-Furnished,6

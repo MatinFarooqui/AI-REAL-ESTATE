@@ -1,712 +1,944 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>AI Estate | Intelligent Real Estate</title>
+    <title>AI Estate | Intelligent Real Estate</title>
 
-<link rel="stylesheet" href="style.css">
-```
+    <meta
+        name="description"
+        content="AI Estate is an intelligent real estate platform for discovering and comparing properties."
+    >
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-```
-<!-- ================= NAVBAR ================= -->
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
 
-<header class="navbar">
+    <header class="navbar">
 
-    <div class="logo">
-        <div class="logo-mark">A</div>
-        <span>AI<span>Estate</span></span>
-    </div>
+        <a href="#" class="brand">
+            <span class="brand-mark">A</span>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#properties">Properties</a>
-        <a href="#features">AI Features</a>
-        <a href="#about">About</a>
-    </nav>
-
-    <button class="nav-button">
-        Get Started
-    </button>
-
-</header>
-
-
-<!-- ================= HERO ================= -->
-
-<section class="hero" id="home">
-
-    <img
-        class="hero-image"
-        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85"
-        alt="Modern luxury house"
-    >
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-        <div class="hero-badge">
-            ✦ AI-POWERED PROPERTY DISCOVERY
-        </div>
-
-        <h1>
-            Find a home that
-            <br>
-            <span>fits your life.</span>
-        </h1>
-
-        <p>
-            Discover properties intelligently using AI-powered
-            recommendations, price insights and smart matching.
-        </p>
-
-    </div>
-
-
-    <!-- HERO SEARCH -->
-
-    <div class="hero-search">
-
-        <div class="search-item">
-
-            <label>LOCATION</label>
-
-            <input
-                type="text"
-                id="city"
-                placeholder="Enter city"
-            >
-
-        </div>
-
-
-        <div class="search-item">
-
-            <label>PROPERTY TYPE</label>
-
-            <select id="propertyType">
-
-                <option>Plot</option>
-                <option>Apartment</option>
-                <option>House</option>
-
-            </select>
-
-        </div>
-
-
-        <div class="search-item">
-
-            <label>MAXIMUM BUDGET</label>
-
-            <input
-                type="number"
-                id="budget"
-                placeholder="₹ Budget"
-            >
-
-        </div>
-
-
-        <div class="search-item">
-
-            <label>AREA</label>
-
-            <input
-                type="number"
-                id="area"
-                placeholder="Sq ft"
-            >
-
-        </div>
-
-
-        <div class="search-item small-search">
-
-            <label>BEDROOMS</label>
-
-            <input
-                type="number"
-                id="bedrooms"
-                placeholder="Beds"
-                min="0"
-            >
-
-        </div>
-
-
-        <button
-            id="searchButton"
-            class="hero-search-button"
-        >
-            Search
-            <span>→</span>
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- ================= INTRO ================= -->
-
-<section class="intro">
-
-    <div>
-
-        <span class="eyebrow">
-            INTELLIGENT REAL ESTATE
-        </span>
-
-        <h2>
-            Property search,
-            <br>
-            reimagined with AI.
-        </h2>
-
-    </div>
-
-    <p>
-        From finding the right location to comparing properties,
-        AI Estate helps you make smarter real-estate decisions
-        using intelligent recommendations and property data.
-    </p>
-
-</section>
-
-
-<!-- ================= FEATURED PROPERTIES ================= -->
-
-<section
-    class="properties-section"
-    id="properties"
->
-
-    <div class="section-top">
-
-        <div>
-
-            <span class="eyebrow">
-                FEATURED PROPERTIES
+            <span class="brand-name">
+                AI<span>Estate</span>
             </span>
+        </a>
 
-            <h2>
-                Explore properties
-            </h2>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#properties">Properties</a>
+            <a href="#ai-features">AI Features</a>
+            <a href="#price-prediction">Price Prediction</a>
+            <a href="#about">About</a>
+        </nav>
 
-        </div>
+        <a href="#search" class="nav-cta">
+            Get Started
+        </a>
 
-        <span class="view-text">
-            AI-curated selection
-        </span>
-
-    </div>
+    </header>
 
 
-    <div class="property-grid">
+    <main>
 
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
 
-        <!-- PROPERTY 1 -->
+        <section class="hero" id="home">
 
-        <article class="property-card large-card">
+            <img
+                class="hero-image"
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=85"
+                alt="Modern luxury house"
+            >
 
-            <div class="property-image">
+            <div class="hero-overlay"></div>
 
-                <img
-                    src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"
-                    alt="Modern luxury villa"
-                >
+            <div class="hero-content">
 
-                <span class="property-tag">
-                    AI PICK
-                </span>
+                <div class="hero-badge">
+                    AI-POWERED PROPERTY DISCOVERY
+                </div>
 
-                <button class="heart">
-                    ♡
-                </button>
+                <h1>
+                    Find a home<br>
+                    <span>that fits you.</span>
+                </h1>
+
+                <p>
+                    Discover properties using intelligent recommendations,
+                    location data and AI-powered property matching.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#search" class="primary-button">
+                        Explore Properties
+                        <span>→</span>
+                    </a>
+
+                    <a href="#ai-features" class="secondary-button">
+                        Discover AI
+                    </a>
+                </div>
 
             </div>
 
-            <div class="property-info">
+        </section>
 
-                <div class="property-type">
-                    HOUSE
+
+        <!-- =====================================================
+             SEARCH PANEL
+        ====================================================== -->
+
+        <section class="search-wrapper" id="search">
+
+            <div class="search-panel">
+
+                <div class="search-heading">
+
+                    <div>
+                        <span class="small-label">
+                            SMART PROPERTY SEARCH
+                        </span>
+
+                        <h2>
+                            What are you looking for?
+                        </h2>
+                    </div>
+
+                    <span class="ai-status">
+                        <span class="status-dot"></span>
+                        AI Matching
+                    </span>
+
                 </div>
 
-                <h3>
-                    Modern Family Residence
-                </h3>
 
-                <p class="location">
-                    📍 Aurangabad, Maharashtra
+                <div class="search-fields">
+
+                    <div class="search-field">
+
+                        <label for="city">
+                            LOCATION
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter city"
+                        >
+
+                    </div>
+
+
+                    <div class="search-field">
+
+                        <label for="propertyType">
+                            PROPERTY TYPE
+                        </label>
+
+                        <select id="propertyType">
+
+                            <option value="Plot">
+                                Plot
+                            </option>
+
+                            <option value="Apartment">
+                                Apartment
+                            </option>
+
+                            <option value="House">
+                                House
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="search-field">
+
+                        <label for="budget">
+                            MAXIMUM BUDGET
+                        </label>
+
+                        <input
+                            type="number"
+                            id="budget"
+                            placeholder="₹ Budget"
+                        >
+
+                    </div>
+
+
+                    <div class="search-field">
+
+                        <label for="area">
+                            AREA
+                        </label>
+
+                        <input
+                            type="number"
+                            id="area"
+                            placeholder="Sq ft"
+                            value="1500"
+                        >
+
+                    </div>
+
+
+                    <div class="search-field">
+
+                        <label for="bedrooms">
+                            BEDROOMS
+                        </label>
+
+                        <input
+                            type="number"
+                            id="bedrooms"
+                            placeholder="Any"
+                            min="0"
+                            value="0"
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="searchButton"
+                        class="search-button"
+                    >
+                        Search
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             INTRO
+        ====================================================== -->
+
+        <section class="intro-section">
+
+            <div class="intro-left">
+
+                <span class="section-label">
+                    INTELLIGENT REAL ESTATE
+                </span>
+
+                <h2>
+                    Property search,<br>
+                    <span>reimagined with AI.</span>
+                </h2>
+
+            </div>
+
+            <div class="intro-right">
+
+                <p>
+                    AI Estate helps you discover properties that match
+                    your requirements instead of making you search
+                    through endless listings.
                 </p>
 
-                <div class="property-details">
+                <a href="#properties" class="text-link">
+                    Explore our properties
+                    <span>→</span>
+                </a>
 
-                    <span>1,800 sq ft</span>
-                    <span>3 Beds</span>
-                    <span>2 Baths</span>
+            </div>
 
+        </section>
+
+
+        <!-- =====================================================
+             FEATURED PROPERTIES
+        ====================================================== -->
+
+        <section class="properties-section" id="properties">
+
+            <div class="section-header">
+
+                <div>
+                    <span class="section-label">
+                        CURATED FOR YOU
+                    </span>
+
+                    <h2>
+                        Featured properties
+                    </h2>
                 </div>
 
-                <div class="property-bottom">
+                <span class="section-note">
+                    Handpicked examples
+                </span>
+
+            </div>
+
+
+            <div class="property-grid">
+
+
+                <!-- PROPERTY 1 -->
+
+                <article class="property-card property-large">
+
+                    <div class="property-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85"
+                            alt="Modern luxury villa"
+                        >
+
+                        <span class="property-badge">
+                            FEATURED
+                        </span>
+
+                        <button
+                            class="favorite-button"
+                            type="button"
+                            aria-label="Add property to favorites"
+                        >
+                            ♡
+                        </button>
+
+                    </div>
+
+                    <div class="property-content">
+
+                        <span class="property-category">
+                            HOUSE
+                        </span>
+
+                        <h3>
+                            Modern Family Residence
+                        </h3>
+
+                        <p class="property-location">
+                            Aurangabad, Maharashtra
+                        </p>
+
+                        <div class="property-meta">
+                            <span>1,800 sq ft</span>
+                            <span>3 Beds</span>
+                            <span>2 Baths</span>
+                        </div>
+
+                        <div class="property-price-row">
+
+                            <strong>
+                                ₹85 Lakh
+                            </strong>
+
+                            <span class="match-badge">
+                                96% Match
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROPERTY 2 -->
+
+                <article class="property-card">
+
+                    <div class="property-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=85"
+                            alt="Modern apartment building"
+                        >
+
+                        <span class="property-badge">
+                            POPULAR
+                        </span>
+
+                        <button
+                            class="favorite-button"
+                            type="button"
+                            aria-label="Add property to favorites"
+                        >
+                            ♡
+                        </button>
+
+                    </div>
+
+                    <div class="property-content">
+
+                        <span class="property-category">
+                            APARTMENT
+                        </span>
+
+                        <h3>
+                            Premium City Apartment
+                        </h3>
+
+                        <p class="property-location">
+                            Pune, Maharashtra
+                        </p>
+
+                        <div class="property-meta">
+                            <span>1,200 sq ft</span>
+                            <span>3 Beds</span>
+                            <span>2 Baths</span>
+                        </div>
+
+                        <div class="property-price-row">
+
+                            <strong>
+                                ₹85 Lakh
+                            </strong>
+
+                            <span class="match-badge">
+                                91% Match
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- PROPERTY 3 -->
+
+                <article class="property-card">
+
+                    <div class="property-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1000&q=85"
+                            alt="Contemporary house"
+                        >
+
+                        <span class="property-badge">
+                            NEW
+                        </span>
+
+                        <button
+                            class="favorite-button"
+                            type="button"
+                            aria-label="Add property to favorites"
+                        >
+                            ♡
+                        </button>
+
+                    </div>
+
+                    <div class="property-content">
+
+                        <span class="property-category">
+                            HOUSE
+                        </span>
+
+                        <h3>
+                            Contemporary Smart Home
+                        </h3>
+
+                        <p class="property-location">
+                            Mumbai, Maharashtra
+                        </p>
+
+                        <div class="property-meta">
+                            <span>2,200 sq ft</span>
+                            <span>4 Beds</span>
+                            <span>3 Baths</span>
+                        </div>
+
+                        <div class="property-price-row">
+
+                            <strong>
+                                ₹1.10 Cr
+                            </strong>
+
+                            <span class="match-badge">
+                                88% Match
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             AI SECTION
+        ====================================================== -->
+
+        <section class="ai-section" id="ai-features">
+
+            <div class="ai-visual">
+
+                <img
+                    src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85"
+                    alt="Luxury property interior"
+                >
+
+                <div class="ai-floating-card">
+
+                    <span class="floating-label">
+                        AI ANALYSIS
+                    </span>
 
                     <strong>
-                        ₹85 Lakh
+                        94%
                     </strong>
 
-                    <span class="match">
-                        96% Match
+                    <span>
+                        Property compatibility
                     </span>
 
                 </div>
 
             </div>
 
-        </article>
 
+            <div class="ai-content">
 
-        <!-- PROPERTY 2 -->
-
-        <article class="property-card">
-
-            <div class="property-image">
-
-                <img
-                    src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=85"
-                    alt="Modern apartment interior"
-                >
-
-                <span class="property-tag">
-                    POPULAR
+                <span class="section-label">
+                    INTELLIGENT MATCHING
                 </span>
 
-                <button class="heart">
-                    ♡
-                </button>
+                <h2>
+                    Your requirements.<br>
+                    <span>Our intelligence.</span>
+                </h2>
 
-            </div>
-
-            <div class="property-info">
-
-                <div class="property-type">
-                    APARTMENT
-                </div>
-
-                <h3>
-                    Premium City Apartment
-                </h3>
-
-                <p class="location">
-                    📍 Pune, Maharashtra
+                <p>
+                    Our recommendation engine evaluates location,
+                    property type, budget, area and bedrooms to find
+                    properties that best match your requirements.
                 </p>
 
-                <div class="property-details">
 
-                    <span>1,200 sq ft</span>
-                    <span>3 Beds</span>
-                    <span>2 Baths</span>
+                <div class="ai-features-list">
 
-                </div>
+                    <div class="ai-feature-item">
 
-                <div class="property-bottom">
+                        <span class="ai-number">
+                            01
+                        </span>
 
-                    <strong>
-                        ₹85 Lakh
-                    </strong>
+                        <div>
+                            <h3>
+                                Smart recommendations
+                            </h3>
 
-                    <span class="match">
-                        91% Match
-                    </span>
+                            <p>
+                                Properties are ranked according to
+                                your preferences.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="ai-feature-item">
+
+                        <span class="ai-number">
+                            02
+                        </span>
+
+                        <div>
+                            <h3>
+                                Budget awareness
+                            </h3>
+
+                            <p>
+                                Find options that fit within your
+                                selected budget.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="ai-feature-item">
+
+                        <span class="ai-number">
+                            03
+                        </span>
+
+                        <div>
+                            <h3>
+                                Location intelligence
+                            </h3>
+
+                            <p>
+                                Compare properties across major
+                                locations.
+                            </p>
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </article>
+        </section>
 
 
-        <!-- PROPERTY 3 -->
 
-        <article class="property-card">
+        <!-- =====================================================
+             AI PRICE PREDICTION
+        ====================================================== -->
 
-            <div class="property-image">
+        <section class="prediction-section" id="price-prediction">
 
-                <img
-                    src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1000&q=85"
-                    alt="Contemporary house"
-                >
+            <div class="prediction-header">
+                <span class="section-label">AI PROPERTY VALUATION</span>
 
-                <span class="property-tag">
-                    NEW
+                <h2>
+                    Know your property's<br>
+                    <span>estimated value.</span>
+                </h2>
+
+                <p>
+                    Enter your property details and our AI model will
+                    estimate its market value using location, property
+                    type, size and other property characteristics.
+                </p>
+            </div>
+
+            <div class="prediction-card">
+
+                <div class="prediction-form">
+
+                    <div class="prediction-field">
+                        <label for="predictionCity">CITY</label>
+                        <input type="text" id="predictionCity" placeholder="e.g. Aurangabad">
+                    </div>
+
+                    <div class="prediction-field">
+                        <label for="predictionLocality">LOCALITY</label>
+                        <input type="text" id="predictionLocality" placeholder="e.g. Cidco">
+                    </div>
+
+                    <div class="prediction-field">
+                        <label for="predictionPropertyType">PROPERTY TYPE</label>
+                        <select id="predictionPropertyType">
+                            <option value="Apartment">Apartment</option>
+                            <option value="House">House</option>
+                            <option value="Plot">Plot</option>
+                        </select>
+                    </div>
+
+                    <div class="prediction-field">
+                        <label for="predictionBhk">BHK</label>
+                        <select id="predictionBhk">
+                            <option value="0">0 BHK / Plot</option>
+                            <option value="1">1 BHK</option>
+                            <option value="2" selected>2 BHK</option>
+                            <option value="3">3 BHK</option>
+                            <option value="4">4 BHK</option>
+                            <option value="5">5 BHK</option>
+                        </select>
+                    </div>
+
+                    <div class="prediction-field">
+                        <label for="predictionArea">AREA (SQ FT)</label>
+                        <input type="number" id="predictionArea" placeholder="e.g. 1200" min="100">
+                    </div>
+
+                    <div class="prediction-field">
+                        <label for="predictionBathrooms">BATHROOMS</label>
+                        <select id="predictionBathrooms">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2" selected>2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <div class="prediction-field">
+                        <label for="predictionBalcony">BALCONY</label>
+                        <select id="predictionBalcony">
+                            <option value="0">0</option>
+                            <option value="1" selected>1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+                    <button type="button" id="predictButton" class="prediction-button">
+                        <span>🤖</span>
+                        Predict Property Price
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+                <div class="prediction-result" id="predictionResult">
+                    <div class="prediction-result-placeholder">
+                        <div class="prediction-ai-icon">AI</div>
+                        <h3>AI Estimated Property Value</h3>
+                        <p>
+                            Enter your property details to receive
+                            an AI-powered price estimate.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =====================================================
+             PROPERTY CATEGORIES
+        ====================================================== -->
+
+        <section class="categories-section">
+
+            <div class="section-header">
+
+                <div>
+                    <span class="section-label">
+                        EXPLORE
+                    </span>
+
+                    <h2>
+                        Search by property type
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="category-grid">
+
+                <a href="#search" class="category-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85"
+                        alt="Houses"
+                    >
+
+                    <div class="category-overlay">
+
+                        <span>
+                            01
+                        </span>
+
+                        <h3>
+                            Houses
+                        </h3>
+
+                        <p>
+                            Comfortable spaces for every family.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a href="#search" class="category-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=85"
+                        alt="Apartments"
+                    >
+
+                    <div class="category-overlay">
+
+                        <span>
+                            02
+                        </span>
+
+                        <h3>
+                            Apartments
+                        </h3>
+
+                        <p>
+                            Modern homes in connected locations.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a href="#search" class="category-card">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=85"
+                        alt="Land and plots"
+                    >
+
+                    <div class="category-overlay">
+
+                        <span>
+                            03
+                        </span>
+
+                        <h3>
+                            Plots
+                        </h3>
+
+                        <p>
+                            Land opportunities for your future.
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RESULTS
+        ====================================================== -->
+
+        <section class="results-section">
+
+            <div class="section-header">
+
+                <div>
+                    <span class="section-label">
+                        AI SEARCH RESULTS
+                    </span>
+
+                    <h2>
+                        Recommended for you
+                    </h2>
+                </div>
+
+            </div>
+
+            <div id="result">
+
+                <div class="empty-results">
+
+                    <div class="empty-icon">
+                        AI
+                    </div>
+
+                    <h3>
+                        Your recommendations will appear here
+                    </h3>
+
+                    <p>
+                        Enter your requirements above and let AI Estate
+                        find suitable properties for you.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ABOUT / CTA
+        ====================================================== -->
+
+        <section class="about-section" id="about">
+
+            <div class="about-content">
+
+                <span class="section-label">
+                    THE AI ESTATE DIFFERENCE
                 </span>
 
-                <button class="heart">
-                    ♡
-                </button>
+                <h2>
+                    Real estate decisions,
+                    <span>made smarter.</span>
+                </h2>
 
-            </div>
-
-            <div class="property-info">
-
-                <div class="property-type">
-                    HOUSE
-                </div>
-
-                <h3>
-                    Contemporary Smart Home
-                </h3>
-
-                <p class="location">
-                    📍 Mumbai, Maharashtra
+                <p>
+                    AI Estate combines property data, intelligent
+                    recommendations and modern cloud-ready technology
+                    to create a smarter property discovery experience.
                 </p>
 
-                <div class="property-details">
-
-                    <span>2,200 sq ft</span>
-                    <span>4 Beds</span>
-                    <span>3 Baths</span>
-
-                </div>
-
-                <div class="property-bottom">
-
-                    <strong>
-                        ₹1.10 Cr
-                    </strong>
-
-                    <span class="match">
-                        88% Match
-                    </span>
-
-                </div>
+                <a href="#search" class="primary-button dark-button">
+                    Start exploring
+                    <span>→</span>
+                </a>
 
             </div>
 
-        </article>
 
-    </div>
+            <div class="about-stat">
 
-</section>
+                <strong>
+                    AI
+                </strong>
 
+                <span>
+                    Intelligent property discovery
+                </span>
 
-<!-- ================= AI RESULTS ================= -->
+            </div>
 
-<section class="ai-section">
+        </section>
 
-    <div class="ai-image">
-
-        <img
-            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
-            alt="Luxury interior"
-        >
-
-    </div>
+    </main>
 
 
-    <div class="ai-content">
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
-        <span class="eyebrow">
-            AI PROPERTY MATCHING
-        </span>
+    <footer>
 
-        <h2>
-            Your requirements.
-            <br>
-            Our intelligence.
-        </h2>
+        <div class="footer-brand">
+            <span class="brand-mark">A</span>
+
+            <span>
+                AI<span>Estate</span>
+            </span>
+        </div>
 
         <p>
-            Our recommendation engine analyzes location,
-            budget, property type, area and bedrooms to
-            rank the properties that fit your requirements.
+            Intelligent real estate discovery.
         </p>
-
-
-        <div class="ai-points">
-
-            <div>
-                <strong>01</strong>
-                <span>Location matching</span>
-            </div>
-
-            <div>
-                <strong>02</strong>
-                <span>Budget intelligence</span>
-            </div>
-
-            <div>
-                <strong>03</strong>
-                <span>Property compatibility</span>
-            </div>
-
-            <div>
-                <strong>04</strong>
-                <span>AI match scoring</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= CATEGORIES ================= -->
-
-<section class="categories">
-
-    <div class="section-top">
-
-        <div>
-
-            <span class="eyebrow">
-                EXPLORE
-            </span>
-
-            <h2>
-                Search by property type
-            </h2>
-
-        </div>
-
-    </div>
-
-
-    <div class="category-grid">
-
-
-        <div class="category-card">
-
-            <img
-                src="https://images.unsplash.com/photo-1600585152915-d208bec867a1?auto=format&fit=crop&w=900&q=85"
-                alt="Luxury house"
-            >
-
-            <div>
-                <span>01</span>
-                <h3>Houses</h3>
-                <p>Find your perfect home</p>
-            </div>
-
-        </div>
-
-
-        <div class="category-card">
-
-            <img
-                src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=85"
-                alt="Apartment building"
-            >
-
-            <div>
-                <span>02</span>
-                <h3>Apartments</h3>
-                <p>Modern city living</p>
-            </div>
-
-        </div>
-
-
-        <div class="category-card">
-
-            <img
-                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
-                alt="Land plot"
-            >
-
-            <div>
-                <span>03</span>
-                <h3>Plots</h3>
-                <p>Build your future</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FEATURES ================= -->
-
-<section
-    class="features"
-    id="features"
->
-
-    <div class="features-heading">
-
-        <span class="eyebrow">
-            WHY AI ESTATE
-        </span>
-
-        <h2>
-            Built around smarter decisions.
-        </h2>
-
-    </div>
-
-
-    <div class="features-grid">
-
-        <div class="feature">
-
-            <span class="feature-number">
-                01
-            </span>
-
-            <h3>
-                AI Recommendations
-            </h3>
-
-            <p>
-                Intelligent property suggestions based
-                on your requirements.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <span class="feature-number">
-                02
-            </span>
-
-            <h3>
-                Smart Matching
-            </h3>
-
-            <p>
-                Compare properties using an intelligent
-                compatibility score.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <span class="feature-number">
-                03
-            </span>
-
-            <h3>
-                Price Intelligence
-            </h3>
-
-            <p>
-                Understand property prices and make
-                data-driven decisions.
-            </p>
-
-        </div>
-
-
-        <div class="feature">
-
-            <span class="feature-number">
-                04
-            </span>
-
-            <h3>
-                Cloud Ready
-            </h3>
-
-            <p>
-                Designed for modern cloud deployment
-                and scalable architecture.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= RESULTS ================= -->
-
-<section class="results-section">
-
-    <div id="result"></div>
-
-</section>
-
-
-<!-- ================= ABOUT ================= -->
-
-<section
-    class="about"
-    id="about"
->
-
-    <div>
-
-        <span class="eyebrow">
-            ABOUT AI ESTATE
-        </span>
-
-        <h2>
-            The future of
-            property discovery.
-        </h2>
-
-        <p>
-            AI Estate combines modern web technology,
-            property data and artificial intelligence
-            to simplify the real-estate experience.
-        </p>
-
-    </div>
-
-    <div class="about-stat">
-
-        <strong>
-            AI
-        </strong>
 
         <span>
-            Powered property intelligence
+            © 2026 AI Estate
         </span>
 
-    </div>
-
-</section>
+    </footer>
 
 
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <div class="footer-logo">
-        AI<span>Estate</span>
-    </div>
-
-    <p>
-        Intelligent property discovery platform.
-    </p>
-
-    <span>
-        © 2026 AI Estate
-    </span>
-
-</footer>
-
-
-<script src="script.js"></script>
-```
+    <script src="script.js"></script>
 
 </body>
-
 </html>

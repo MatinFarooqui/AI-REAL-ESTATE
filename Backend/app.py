@@ -1,9 +1,40 @@
+from pathlib import Path
 
 from flask import Flask, jsonify, request
 import pandas as pd
+import joblib
+
 from property import calculate_rate
 
+
+# ==========================================
+# PROJECT PATHS
+# ==========================================
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATA_PATH = BASE_DIR / "data" / "properties.csv"
+MODEL_PATH = BASE_DIR / "ml" / "real_estate_price_model_v2.pkl"
+
+
+# ==========================================
+# FLASK APP
+# ==========================================
+
 app = Flask(__name__)
+
+
+# ==========================================
+# LOAD AI MODEL
+# ==========================================
+
+try:
+    model_pipeline = joblib.load(MODEL_PATH)
+    print("AI price prediction model loaded successfully.")
+except Exception as e:
+    model_pipeline = None
+    print("Warning: AI model could not be loaded.")
+    print(e)
 
 
 # ==========================================
@@ -34,8 +65,13 @@ def property_rate():
             "error": "Price and area are required"
         }), 400
 
-    price = float(price)
-    area = float(area)
+    try:
+        price = float(price)
+        area = float(area)
+    except ValueError:
+        return jsonify({
+            "error": "Price and area must be numeric"
+        }), 400
 
     if price <= 0 or area <= 0:
         return jsonify({
@@ -72,10 +108,19 @@ def search_properties():
             "error": "City, property type, budget and area are required"
         }), 400
 
-    budget = float(budget)
-    area = float(area)
+    try:
+        budget = float(budget)
+        area = float(area)
 
-    data = pd.read_csv("../data/properties.csv")
+        if bedrooms:
+            bedrooms = int(bedrooms)
+
+    except ValueError:
+        return jsonify({
+            "error": "Invalid numeric value"
+        }), 400
+
+    data = pd.read_csv(DATA_PATH)
 
     filtered = data[
         (data["city"].str.lower() == city.lower()) &
@@ -84,8 +129,6 @@ def search_properties():
     ]
 
     if bedrooms:
-        bedrooms = int(bedrooms)
-
         filtered = filtered[
             filtered["bedrooms"] >= bedrooms
         ]
@@ -138,8 +181,7 @@ def recommend_properties():
             "error": "Invalid numeric value"
         }), 400
 
-    # Load property dataset
-    data = pd.read_csv("../data/properties.csv")
+    data = pd.read_csv(DATA_PATH)
 
     recommendations = []
 
@@ -147,24 +189,15 @@ def recommend_properties():
 
         score = 0
 
-        # --------------------------------------
-        # CITY MATCH - 30 POINTS
-        # --------------------------------------
-
+        # CITY MATCH
         if str(property["city"]).lower() == city.lower():
             score += 30
 
-        # --------------------------------------
-        # PROPERTY TYPE MATCH - 25 POINTS
-        # --------------------------------------
-
+        # PROPERTY TYPE MATCH
         if str(property["property_type"]).lower() == property_type.lower():
             score += 25
 
-        # --------------------------------------
-        # BUDGET MATCH - 20 POINTS
-        # --------------------------------------
-
+        # BUDGET MATCH
         property_budget = float(property["budget"])
 
         if property_budget <= budget:
@@ -180,10 +213,7 @@ def recommend_properties():
             else:
                 score += 10
 
-        # --------------------------------------
-        # AREA MATCH - 15 POINTS
-        # --------------------------------------
-
+        # AREA MATCH
         property_area = float(property["area"])
 
         area_difference = abs(property_area - area) / area
@@ -197,10 +227,7 @@ def recommend_properties():
         elif area_difference <= 0.30:
             score += 5
 
-        # --------------------------------------
-        # BEDROOM MATCH - 10 POINTS
-        # --------------------------------------
-
+        # BEDROOM MATCH
         if bedrooms is not None:
 
             property_bedrooms = int(property["bedrooms"])
@@ -211,11 +238,6 @@ def recommend_properties():
             elif property_bedrooms >= bedrooms:
                 score += 5
 
-        # --------------------------------------
-        # ADD RECOMMENDATION
-        # --------------------------------------
-
-     
         recommendations.append({
             "id": int(property["id"]),
             "city": property["city"],
@@ -229,18 +251,13 @@ def recommend_properties():
             "furnishing": property["furnishing"],
             "property_age": int(property["property_age"]),
             "match_score": score
-  })
-
-    # --------------------------------------
-    # SORT BEST MATCH FIRST
-    # --------------------------------------
+        })
 
     recommendations.sort(
         key=lambda x: x["match_score"],
         reverse=True
     )
 
-    # Return top 5 recommendations
     recommendations = recommendations[:5]
 
     return jsonify({
@@ -250,16 +267,13 @@ def recommend_properties():
 
 
 # ==========================================
-# START SERVER
-# ==========================================
-# ==========================================
 # PROPERTY DETAILS
 # ==========================================
 
 @app.route("/property/<int:property_id>")
 def property_details(property_id):
 
-    data = pd.read_csv("../data/properties.csv")
+    data = pd.read_csv(DATA_PATH)
 
     property_data = data[
         data["id"] == property_id
@@ -285,6 +299,91 @@ def property_details(property_id):
         "furnishing": property_info["furnishing"],
         "property_age": int(property_info["property_age"])
     })
+
+
+# ==========================================
+# AI PRICE PREDICTION
+# ==========================================
+
+@app.route("/predict-price", methods=["POST"])
+def predict_price():
+
+    if model_pipeline is None:
+        return jsonify({
+            "error": "AI price prediction model is not available"
+        }), 500
+
+    data = request.get_json()
+
+    if not data:
+        return jsonify({
+            "error": "JSON request body is required"
+        }), 400
+
+    required_fields = [
+        "city",
+        "locality",
+        "property_type",
+        "bhk",
+        "area_sqft",
+        "bathrooms",
+        "balcony"
+    ]
+
+    missing_fields = [
+        field
+        for field in required_fields
+        if field not in data
+    ]
+
+    if missing_fields:
+        return jsonify({
+            "error": "Missing required fields",
+            "missing_fields": missing_fields
+        }), 400
+
+    try:
+        prediction_input = pd.DataFrame([{
+            "city": str(data["city"]),
+            "locality": str(data["locality"]),
+            "property_type": str(data["property_type"]),
+            "bhk": float(data["bhk"]),
+            "area_sqft": float(data["area_sqft"]),
+            "bathrooms": float(data["bathrooms"]),
+            "balcony": float(data["balcony"])
+        }])
+
+    except (ValueError, TypeError):
+        return jsonify({
+            "error": "Invalid numeric value"
+        }), 400
+
+    try:
+
+        # V2 model contains the preprocessing pipeline
+        prediction = model_pipeline.predict(
+            prediction_input
+        )
+
+        predicted_price = float(prediction[0])
+
+        return jsonify({
+            "success": True,
+            "predicted_price": round(predicted_price, 2),
+            "currency": "INR"
+        })
+
+    except Exception as e:
+
+        return jsonify({
+            "error": "Prediction failed",
+            "details": str(e)
+        }), 500
+
+
+# ==========================================
+# START SERVER
+# ==========================================
 
 if __name__ == "__main__":
     app.run(debug=True)
