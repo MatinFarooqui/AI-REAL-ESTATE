@@ -215,14 +215,21 @@ def recommend_properties():
         # ADD RECOMMENDATION
         # --------------------------------------
 
+     
         recommendations.append({
+            "id": int(property["id"]),
             "city": property["city"],
+            "locality": property["locality"],
             "property_type": property["property_type"],
             "area": property_area,
             "budget": property_budget,
             "bedrooms": int(property["bedrooms"]),
+            "bathrooms": int(property["bathrooms"]),
+            "parking": int(property["parking"]),
+            "furnishing": property["furnishing"],
+            "property_age": int(property["property_age"]),
             "match_score": score
-        })
+  })
 
     # --------------------------------------
     # SORT BEST MATCH FIRST
@@ -245,6 +252,39 @@ def recommend_properties():
 # ==========================================
 # START SERVER
 # ==========================================
+# ==========================================
+# PROPERTY DETAILS
+# ==========================================
+
+@app.route("/property/<int:property_id>")
+def property_details(property_id):
+
+    data = pd.read_csv("../data/properties.csv")
+
+    property_data = data[
+        data["id"] == property_id
+    ]
+
+    if property_data.empty:
+        return jsonify({
+            "error": "Property not found"
+        }), 404
+
+    property_info = property_data.iloc[0].to_dict()
+
+    return jsonify({
+        "id": int(property_info["id"]),
+        "city": property_info["city"],
+        "locality": property_info["locality"],
+        "property_type": property_info["property_type"],
+        "area": float(property_info["area"]),
+        "budget": float(property_info["budget"]),
+        "bedrooms": int(property_info["bedrooms"]),
+        "bathrooms": int(property_info["bathrooms"]),
+        "parking": int(property_info["parking"]),
+        "furnishing": property_info["furnishing"],
+        "property_age": int(property_info["property_age"])
+    })
 
 if __name__ == "__main__":
     app.run(debug=True)
