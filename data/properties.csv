@@ -1,0 +1,15 @@
+city,property_type,area,budget,bedrooms
+Aurangabad,Plot,1000,3000000,0
+Aurangabad,Plot,1500,5000000,0
+Aurangabad,Plot,2000,7000000,0
+Aurangabad,Apartment,1000,4500000,2
+Aurangabad,Apartment,1200,5500000,2
+Aurangabad,Apartment,1500,7000000,3
+Aurangabad,House,1200,6000000,2
+Aurangabad,House,1800,8500000,3
+Aurangabad,House,2200,11000000,4
+Pune,Apartment,900,6500000,2
+Pune,Apartment,1200,8500000,3
+Pune,House,1800,12000000,3
+Mumbai,Apartment,700,10000000,2
+Mumbai,Apartment,1000,15000000,3
