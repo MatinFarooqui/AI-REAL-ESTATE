@@ -5,6 +5,7 @@ import pandas as pd
 import joblib
 
 from property import calculate_rate
+from mongodb import db, test_connection
 
 
 # ==========================================
@@ -22,6 +23,18 @@ MODEL_PATH = BASE_DIR / "ml" / "real_estate_price_model_v2.pkl"
 # ==========================================
 
 app = Flask(__name__)
+
+
+# ==========================================
+# MONGODB CONNECTION
+# ==========================================
+
+try:
+    test_connection()
+    print("MongoDB connected successfully.")
+except Exception as e:
+    print("Warning: MongoDB connection failed.")
+    print(e)
 
 
 # ==========================================
@@ -343,6 +356,7 @@ def predict_price():
         }), 400
 
     try:
+
         prediction_input = pd.DataFrame([{
             "city": str(data["city"]),
             "locality": str(data["locality"]),
@@ -354,6 +368,7 @@ def predict_price():
         }])
 
     except (ValueError, TypeError):
+
         return jsonify({
             "error": "Invalid numeric value"
         }), 400
@@ -378,6 +393,32 @@ def predict_price():
         return jsonify({
             "error": "Prediction failed",
             "details": str(e)
+        }), 500
+
+
+# ==========================================
+# MONGODB TEST ROUTE
+# ==========================================
+
+@app.route("/mongodb-status")
+def mongodb_status():
+
+    try:
+
+        test_connection()
+
+        return jsonify({
+            "success": True,
+            "message": "MongoDB connection is working",
+            "database": db.name
+        })
+
+    except Exception as e:
+
+        return jsonify({
+            "success": False,
+            "message": "MongoDB connection failed",
+            "error": str(e)
         }), 500
 
 
