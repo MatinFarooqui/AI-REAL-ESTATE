@@ -1,28 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI Estate | Intelligent Real Estate</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>HomeSense AI | Intelligent Real Estate</title>
 
     <meta
         name="description"
-        content="AI Estate is an intelligent real estate platform for discovering and comparing properties."
+        content="HomeSense AI is an intelligent real estate platform for discovering, comparing and valuing properties."
     >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        /* =====================================================
+           AUTHENTICATION UI
+        ====================================================== */
+
+        .auth-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .auth-link {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            padding: 10px 14px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .auth-link:hover {
+            color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .signup-link {
+            color: white;
+            background: #2563eb;
+        }
+
+        .signup-link:hover {
+            color: white;
+            background: #1d4ed8;
+        }
+
+        .user-menu {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .user-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .logout-button {
+            border: 1px solid #e2e8f0;
+            background: white;
+            color: #475569;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .logout-button:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+        }
+
+
+        /* =====================================================
+           AUTH MESSAGE MODAL
+        ====================================================== */
+
+        .auth-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+        }
+
+        .auth-modal.active {
+            display: flex;
+        }
+
+        .auth-modal-card {
+            width: 100%;
+            max-width: 390px;
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 25px 70px rgba(15, 23, 42, 0.25);
+            position: relative;
+            text-align: center;
+        }
+
+        .auth-modal-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: #eff6ff;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .auth-modal-card h3 {
+            font-family: "Manrope", sans-serif;
+            font-size: 22px;
+            color: #172033;
+            margin-bottom: 9px;
+        }
+
+        .auth-modal-card p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .auth-modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-modal-actions a,
+        .auth-modal-actions button {
+            flex: 1;
+            padding: 12px 14px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .modal-login {
+            background: #2563eb;
+            color: white;
+            border: 1px solid #2563eb;
+        }
+
+        .modal-signup {
+            background: white;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            border: none;
+            background: transparent;
+            color: #94a3b8;
+            font-size: 23px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: #334155;
+        }
+
+
+        /* =====================================================
+           MOBILE AUTH NAV
+        ====================================================== */
+
+        @media (max-width: 900px) {
+
+            .auth-actions {
+                gap: 4px;
+            }
+
+            .user-name {
+                display: none;
+            }
+
+            .logout-button {
+                padding: 7px 9px;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .auth-link {
+                padding: 8px 9px;
+                font-size: 13px;
+            }
+
+            .signup-link {
+                display: none;
+            }
+
+            .auth-modal-card {
+                padding: 27px 22px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
+
 <body>
+
 
     <!-- =====================================================
          NAVBAR
@@ -30,36 +280,164 @@
 
     <header class="navbar">
 
-        <a href="#" class="brand">
-            <span class="brand-mark">A</span>
+        <a
+            href="#home"
+            class="brand"
+            aria-label="HomeSense AI home"
+        >
+
+            <span
+                class="brand-logo"
+                aria-hidden="true"
+            >
+
+                <span class="logo-roof"></span>
+
+                <span class="logo-house">
+
+                    <span class="logo-door"></span>
+
+                </span>
+
+                <span class="logo-ai-dot logo-dot-1"></span>
+
+                <span class="logo-ai-dot logo-dot-2"></span>
+
+                <span class="logo-ai-line"></span>
+
+            </span>
+
 
             <span class="brand-name">
-                AI<span>Estate</span>
+
+                HomeSense <span>AI</span>
+
             </span>
+
         </a>
+
 
         <nav class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#properties">Properties</a>
-            <a href="#ai-features">AI Features</a>
-            <a href="#price-prediction">Price Prediction</a>
-            <a href="#about">About</a>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#properties">
+                Properties
+            </a>
+
+            <a href="#ai-features">
+                AI Features
+            </a>
+
+            <a href="#price-prediction">
+                Price Prediction
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
         </nav>
 
-        <a href="#search" class="nav-cta">
-            Get Started
-        </a>
+
+        <div class="nav-actions">
+
+            <!-- GUEST AUTH -->
+
+            <div
+                class="auth-actions"
+                id="guestAuth"
+            >
+
+                <a
+                    href="login.html"
+                    class="auth-link"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="signup.html"
+                    class="auth-link signup-link"
+                >
+                    Sign Up
+                </a>
+
+            </div>
+
+
+            <!-- LOGGED-IN USER -->
+
+            <div
+                class="user-menu"
+                id="userMenu"
+            >
+
+                <div class="user-info">
+
+                    <div
+                        class="user-avatar"
+                        id="userAvatar"
+                    >
+                        U
+                    </div>
+
+                    <span
+                        class="user-name"
+                        id="userName"
+                    >
+                        User
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logoutButton"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+
+            <a
+                href="#list-property"
+                class="nav-list-property protected-action"
+                data-action="list"
+            >
+                List Property
+            </a>
+
+
+            <a
+                href="#search"
+                class="nav-cta"
+            >
+                Get Started
+            </a>
+
+        </div>
 
     </header>
 
 
+
     <main>
+
 
         <!-- =====================================================
              HERO
         ====================================================== -->
 
-        <section class="hero" id="home">
+        <section
+            class="hero"
+            id="home"
+        >
 
             <img
                 class="hero-image"
@@ -69,31 +447,98 @@
 
             <div class="hero-overlay"></div>
 
+
             <div class="hero-content">
 
                 <div class="hero-badge">
-                    AI-POWERED PROPERTY DISCOVERY
+                    AI-POWERED PROPERTY INTELLIGENCE
                 </div>
 
+
                 <h1>
+
                     Find a home<br>
-                    <span>that fits you.</span>
+
+                    <span>
+                        that understands you.
+                    </span>
+
                 </h1>
+
 
                 <p>
                     Discover properties using intelligent recommendations,
-                    location data and AI-powered property matching.
+                    market data and AI-powered property valuation.
                 </p>
 
+
                 <div class="hero-actions">
-                    <a href="#search" class="primary-button">
+
+                    <a
+                        href="#search"
+                        class="primary-button"
+                    >
+
                         Explore Properties
+
                         <span>→</span>
+
                     </a>
 
-                    <a href="#ai-features" class="secondary-button">
-                        Discover AI
+
+                    <a
+                        href="#list-property"
+                        class="secondary-button protected-action"
+                        data-action="list"
+                    >
+
+                        List Your Property
+
                     </a>
+
+                </div>
+
+
+                <div class="hero-trust">
+
+                    <div>
+
+                        <strong>
+                            AI
+                        </strong>
+
+                        <span>
+                            Property Matching
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            24/7
+                        </strong>
+
+                        <span>
+                            Smart Assistance
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            ₹
+                        </strong>
+
+                        <span>
+                            AI Valuation
+                        </span>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -101,17 +546,23 @@
         </section>
 
 
+
         <!-- =====================================================
              SEARCH PANEL
         ====================================================== -->
 
-        <section class="search-wrapper" id="search">
+        <section
+            class="search-wrapper"
+            id="search"
+        >
 
             <div class="search-panel">
+
 
                 <div class="search-heading">
 
                     <div>
+
                         <span class="small-label">
                             SMART PROPERTY SEARCH
                         </span>
@@ -119,17 +570,24 @@
                         <h2>
                             What are you looking for?
                         </h2>
+
                     </div>
 
+
                     <span class="ai-status">
+
                         <span class="status-dot"></span>
+
                         AI Matching
+
                     </span>
 
                 </div>
 
 
+
                 <div class="search-fields">
+
 
                     <div class="search-field">
 
@@ -144,6 +602,7 @@
                         >
 
                     </div>
+
 
 
                     <div class="search-field">
@@ -171,6 +630,7 @@
                     </div>
 
 
+
                     <div class="search-field">
 
                         <label for="budget">
@@ -184,6 +644,7 @@
                         >
 
                     </div>
+
 
 
                     <div class="search-field">
@@ -200,6 +661,7 @@
                         >
 
                     </div>
+
 
 
                     <div class="search-field">
@@ -219,13 +681,17 @@
                     </div>
 
 
+
                     <button
                         type="button"
                         id="searchButton"
                         class="search-button"
                     >
+
                         Search
+
                         <span>→</span>
+
                     </button>
 
                 </div>
@@ -233,6 +699,7 @@
             </div>
 
         </section>
+
 
 
         <!-- =====================================================
@@ -247,24 +714,40 @@
                     INTELLIGENT REAL ESTATE
                 </span>
 
+
                 <h2>
+
                     Property search,<br>
-                    <span>reimagined with AI.</span>
+
+                    <span>
+                        reimagined with AI.
+                    </span>
+
                 </h2>
 
             </div>
 
+
             <div class="intro-right">
 
                 <p>
-                    AI Estate helps you discover properties that match
+
+                    HomeSense AI helps you discover properties that match
                     your requirements instead of making you search
                     through endless listings.
+
                 </p>
 
-                <a href="#properties" class="text-link">
+
+                <a
+                    href="#properties"
+                    class="text-link"
+                >
+
                     Explore our properties
+
                     <span>→</span>
+
                 </a>
 
             </div>
@@ -272,15 +755,20 @@
         </section>
 
 
+
         <!-- =====================================================
              FEATURED PROPERTIES
         ====================================================== -->
 
-        <section class="properties-section" id="properties">
+        <section
+            class="properties-section"
+            id="properties"
+        >
 
             <div class="section-header">
 
                 <div>
+
                     <span class="section-label">
                         CURATED FOR YOU
                     </span>
@@ -288,13 +776,16 @@
                     <h2>
                         Featured properties
                     </h2>
+
                 </div>
+
 
                 <span class="section-note">
                     Handpicked examples
                 </span>
 
             </div>
+
 
 
             <div class="property-grid">
@@ -311,19 +802,23 @@
                             alt="Modern luxury villa"
                         >
 
+
                         <span class="property-badge">
                             FEATURED
                         </span>
 
+
                         <button
-                            class="favorite-button"
+                            class="favorite-button protected-action"
                             type="button"
                             aria-label="Add property to favorites"
+                            data-action="favorite"
                         >
                             ♡
                         </button>
 
                     </div>
+
 
                     <div class="property-content">
 
@@ -331,19 +826,33 @@
                             HOUSE
                         </span>
 
+
                         <h3>
                             Modern Family Residence
                         </h3>
+
 
                         <p class="property-location">
                             Aurangabad, Maharashtra
                         </p>
 
+
                         <div class="property-meta">
-                            <span>1,800 sq ft</span>
-                            <span>3 Beds</span>
-                            <span>2 Baths</span>
+
+                            <span>
+                                1,800 sq ft
+                            </span>
+
+                            <span>
+                                3 Beds
+                            </span>
+
+                            <span>
+                                2 Baths
+                            </span>
+
                         </div>
+
 
                         <div class="property-price-row">
 
@@ -362,6 +871,7 @@
                 </article>
 
 
+
                 <!-- PROPERTY 2 -->
 
                 <article class="property-card">
@@ -373,19 +883,23 @@
                             alt="Modern apartment building"
                         >
 
+
                         <span class="property-badge">
                             POPULAR
                         </span>
 
+
                         <button
-                            class="favorite-button"
+                            class="favorite-button protected-action"
                             type="button"
                             aria-label="Add property to favorites"
+                            data-action="favorite"
                         >
                             ♡
                         </button>
 
                     </div>
+
 
                     <div class="property-content">
 
@@ -393,19 +907,33 @@
                             APARTMENT
                         </span>
 
+
                         <h3>
                             Premium City Apartment
                         </h3>
+
 
                         <p class="property-location">
                             Pune, Maharashtra
                         </p>
 
+
                         <div class="property-meta">
-                            <span>1,200 sq ft</span>
-                            <span>3 Beds</span>
-                            <span>2 Baths</span>
+
+                            <span>
+                                1,200 sq ft
+                            </span>
+
+                            <span>
+                                3 Beds
+                            </span>
+
+                            <span>
+                                2 Baths
+                            </span>
+
                         </div>
+
 
                         <div class="property-price-row">
 
@@ -424,6 +952,7 @@
                 </article>
 
 
+
                 <!-- PROPERTY 3 -->
 
                 <article class="property-card">
@@ -435,19 +964,23 @@
                             alt="Contemporary house"
                         >
 
+
                         <span class="property-badge">
                             NEW
                         </span>
 
+
                         <button
-                            class="favorite-button"
+                            class="favorite-button protected-action"
                             type="button"
                             aria-label="Add property to favorites"
+                            data-action="favorite"
                         >
                             ♡
                         </button>
 
                     </div>
+
 
                     <div class="property-content">
 
@@ -455,19 +988,33 @@
                             HOUSE
                         </span>
 
+
                         <h3>
                             Contemporary Smart Home
                         </h3>
+
 
                         <p class="property-location">
                             Mumbai, Maharashtra
                         </p>
 
+
                         <div class="property-meta">
-                            <span>2,200 sq ft</span>
-                            <span>4 Beds</span>
-                            <span>3 Baths</span>
+
+                            <span>
+                                2,200 sq ft
+                            </span>
+
+                            <span>
+                                4 Beds
+                            </span>
+
+                            <span>
+                                3 Baths
+                            </span>
+
                         </div>
+
 
                         <div class="property-price-row">
 
@@ -490,11 +1037,15 @@
         </section>
 
 
+
         <!-- =====================================================
              AI SECTION
         ====================================================== -->
 
-        <section class="ai-section" id="ai-features">
+        <section
+            class="ai-section"
+            id="ai-features"
+        >
 
             <div class="ai-visual">
 
@@ -502,6 +1053,7 @@
                     src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85"
                     alt="Luxury property interior"
                 >
+
 
                 <div class="ai-floating-card">
 
@@ -522,25 +1074,37 @@
             </div>
 
 
+
             <div class="ai-content">
 
                 <span class="section-label">
                     INTELLIGENT MATCHING
                 </span>
 
+
                 <h2>
+
                     Your requirements.<br>
-                    <span>Our intelligence.</span>
+
+                    <span>
+                        Our intelligence.
+                    </span>
+
                 </h2>
 
+
                 <p>
+
                     Our recommendation engine evaluates location,
                     property type, budget, area and bedrooms to find
                     properties that best match your requirements.
+
                 </p>
 
 
+
                 <div class="ai-features-list">
+
 
                     <div class="ai-feature-item">
 
@@ -549,6 +1113,7 @@
                         </span>
 
                         <div>
+
                             <h3>
                                 Smart recommendations
                             </h3>
@@ -557,9 +1122,11 @@
                                 Properties are ranked according to
                                 your preferences.
                             </p>
+
                         </div>
 
                     </div>
+
 
 
                     <div class="ai-feature-item">
@@ -569,17 +1136,20 @@
                         </span>
 
                         <div>
+
                             <h3>
-                                Budget awareness
+                                AI property valuation
                             </h3>
 
                             <p>
-                                Find options that fit within your
-                                selected budget.
+                                Estimate property value using our
+                                trained machine-learning model.
                             </p>
+
                         </div>
 
                     </div>
+
 
 
                     <div class="ai-feature-item">
@@ -589,14 +1159,16 @@
                         </span>
 
                         <div>
+
                             <h3>
                                 Location intelligence
                             </h3>
 
                             <p>
                                 Compare properties across major
-                                locations.
+                                locations and localities.
                             </p>
+
                         </div>
 
                     </div>
@@ -613,107 +1185,920 @@
              AI PRICE PREDICTION
         ====================================================== -->
 
-        <section class="prediction-section" id="price-prediction">
+        <section
+            class="prediction-section"
+            id="price-prediction"
+        >
 
             <div class="prediction-header">
-                <span class="section-label">AI PROPERTY VALUATION</span>
+
+                <span class="section-label">
+                    AI PROPERTY VALUATION
+                </span>
+
 
                 <h2>
+
                     Know your property's<br>
-                    <span>estimated value.</span>
+
+                    <span>
+                        estimated value.
+                    </span>
+
                 </h2>
 
+
                 <p>
+
                     Enter your property details and our AI model will
                     estimate its market value using location, property
                     type, size and other property characteristics.
+
                 </p>
+
             </div>
+
+
 
             <div class="prediction-card">
 
+
                 <div class="prediction-form">
 
-                    <div class="prediction-field">
-                        <label for="predictionCity">CITY</label>
-                        <input type="text" id="predictionCity" placeholder="e.g. Aurangabad">
-                    </div>
 
                     <div class="prediction-field">
-                        <label for="predictionLocality">LOCALITY</label>
-                        <input type="text" id="predictionLocality" placeholder="e.g. Cidco">
+
+                        <label for="predictionCity">
+                            CITY
+                        </label>
+
+                        <input
+                            type="text"
+                            id="predictionCity"
+                            placeholder="e.g. Aurangabad"
+                        >
+
                     </div>
 
+
+
                     <div class="prediction-field">
-                        <label for="predictionPropertyType">PROPERTY TYPE</label>
+
+                        <label for="predictionLocality">
+                            LOCALITY
+                        </label>
+
+                        <input
+                            type="text"
+                            id="predictionLocality"
+                            placeholder="e.g. Cidco"
+                        >
+
+                    </div>
+
+
+
+                    <div class="prediction-field">
+
+                        <label for="predictionPropertyType">
+                            PROPERTY TYPE
+                        </label>
+
                         <select id="predictionPropertyType">
-                            <option value="Apartment">Apartment</option>
-                            <option value="House">House</option>
-                            <option value="Plot">Plot</option>
+
+                            <option value="Apartment">
+                                Apartment
+                            </option>
+
+                            <option value="House">
+                                House
+                            </option>
+
+                            <option value="Plot">
+                                Plot
+                            </option>
+
                         </select>
+
                     </div>
 
+
+
                     <div class="prediction-field">
-                        <label for="predictionBhk">BHK</label>
+
+                        <label for="predictionBhk">
+                            BHK
+                        </label>
+
                         <select id="predictionBhk">
-                            <option value="0">0 BHK / Plot</option>
-                            <option value="1">1 BHK</option>
-                            <option value="2" selected>2 BHK</option>
-                            <option value="3">3 BHK</option>
-                            <option value="4">4 BHK</option>
-                            <option value="5">5 BHK</option>
+
+                            <option value="0">
+                                0 BHK / Plot
+                            </option>
+
+                            <option value="1">
+                                1 BHK
+                            </option>
+
+                            <option
+                                value="2"
+                                selected
+                            >
+                                2 BHK
+                            </option>
+
+                            <option value="3">
+                                3 BHK
+                            </option>
+
+                            <option value="4">
+                                4 BHK
+                            </option>
+
+                            <option value="5">
+                                5 BHK
+                            </option>
+
                         </select>
+
                     </div>
 
-                    <div class="prediction-field">
-                        <label for="predictionArea">AREA (SQ FT)</label>
-                        <input type="number" id="predictionArea" placeholder="e.g. 1200" min="100">
-                    </div>
+
 
                     <div class="prediction-field">
-                        <label for="predictionBathrooms">BATHROOMS</label>
+
+                        <label for="predictionArea">
+                            AREA (SQ FT)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="predictionArea"
+                            placeholder="e.g. 1200"
+                            min="100"
+                        >
+
+                    </div>
+
+
+
+                    <div class="prediction-field">
+
+                        <label for="predictionBathrooms">
+                            BATHROOMS
+                        </label>
+
                         <select id="predictionBathrooms">
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2" selected>2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+
+                            <option value="0">
+                                0
+                            </option>
+
+                            <option value="1">
+                                1
+                            </option>
+
+                            <option
+                                value="2"
+                                selected
+                            >
+                                2
+                            </option>
+
+                            <option value="3">
+                                3
+                            </option>
+
+                            <option value="4">
+                                4
+                            </option>
+
+                            <option value="5">
+                                5
+                            </option>
+
                         </select>
+
                     </div>
+
+
 
                     <div class="prediction-field">
-                        <label for="predictionBalcony">BALCONY</label>
+
+                        <label for="predictionBalcony">
+                            BALCONY
+                        </label>
+
                         <select id="predictionBalcony">
-                            <option value="0">0</option>
-                            <option value="1" selected>1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
+
+                            <option value="0">
+                                0
+                            </option>
+
+                            <option
+                                value="1"
+                                selected
+                            >
+                                1
+                            </option>
+
+                            <option value="2">
+                                2
+                            </option>
+
+                            <option value="3">
+                                3
+                            </option>
+
+                            <option value="4">
+                                4
+                            </option>
+
                         </select>
+
                     </div>
 
-                    <button type="button" id="predictButton" class="prediction-button">
-                        <span>🤖</span>
+
+
+                    <button
+                        type="button"
+                        id="predictButton"
+                        class="prediction-button"
+                    >
+
+                        <span>
+                            AI
+                        </span>
+
                         Predict Property Price
-                        <span>→</span>
+
+                        <span>
+                            →
+                        </span>
+
                     </button>
 
                 </div>
 
-                <div class="prediction-result" id="predictionResult">
+
+
+                <div
+                    class="prediction-result"
+                    id="predictionResult"
+                >
+
                     <div class="prediction-result-placeholder">
-                        <div class="prediction-ai-icon">AI</div>
-                        <h3>AI Estimated Property Value</h3>
+
+                        <div class="prediction-ai-icon">
+                            AI
+                        </div>
+
+
+                        <h3>
+                            AI Estimated Property Value
+                        </h3>
+
+
                         <p>
                             Enter your property details to receive
                             an AI-powered price estimate.
                         </p>
+
                     </div>
+
                 </div>
 
             </div>
+
         </section>
+
+
+
+        <!-- =====================================================
+             LIST YOUR PROPERTY
+        ====================================================== -->
+
+        <section
+            class="listing-section"
+            id="list-property"
+        >
+
+
+            <div class="listing-header">
+
+                <span class="section-label">
+                    FOR PROPERTY OWNERS
+                </span>
+
+
+                <h2>
+
+                    List your property<br>
+
+                    <span>
+                        with HomeSense AI.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Submit your property and reach customers through
+                    intelligent property discovery. Every new listing
+                    enters our verification workflow before publication.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="listing-layout">
+
+
+                <!-- =================================================
+                     LISTING FORM
+                ================================================== -->
+
+                <div class="listing-card">
+
+
+                    <div class="listing-card-header">
+
+                        <div>
+
+                            <span class="listing-step">
+                                PROPERTY LISTING
+                            </span>
+
+
+                            <h3>
+                                Property information
+                            </h3>
+
+                        </div>
+
+
+                        <span class="listing-secure">
+                            ● Secure submission
+                        </span>
+
+                    </div>
+
+
+
+                    <form id="propertyListingForm">
+
+
+                        <!-- OWNER -->
+
+                        <div class="form-section-title">
+                            Owner & listing
+                        </div>
+
+
+                        <div class="listing-form-grid">
+
+
+                            <div class="listing-field">
+
+                                <label for="listingOwnerId">
+                                    OWNER ID
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="listingOwnerId"
+                                    placeholder="e.g. owner_001"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="listing-field">
+
+                                <label for="listingType">
+                                    LISTING TYPE
+                                </label>
+
+                                <select
+                                    id="listingType"
+                                    required
+                                >
+
+                                    <option value="Sell">
+                                        Sell
+                                    </option>
+
+                                    <option value="Rent">
+                                        Rent
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- LOCATION -->
+
+                        <div class="form-section-title">
+                            Property location
+                        </div>
+
+
+                        <div class="listing-form-grid">
+
+
+                            <div class="listing-field">
+
+                                <label for="listingCity">
+                                    CITY
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="listingCity"
+                                    placeholder="e.g. Aurangabad"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="listing-field">
+
+                                <label for="listingLocality">
+                                    LOCALITY
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="listingLocality"
+                                    placeholder="e.g. Cidco"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- PROPERTY DETAILS -->
+
+                        <div class="form-section-title">
+                            Property details
+                        </div>
+
+
+                        <div class="listing-form-grid three-columns">
+
+
+                            <div class="listing-field">
+
+                                <label for="listingPropertyType">
+                                    PROPERTY TYPE
+                                </label>
+
+                                <select
+                                    id="listingPropertyType"
+                                    required
+                                >
+
+                                    <option value="Apartment">
+                                        Apartment
+                                    </option>
+
+                                    <option value="House">
+                                        House
+                                    </option>
+
+                                    <option value="Plot">
+                                        Plot
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="listing-field">
+
+                                <label for="listingArea">
+                                    AREA SQ FT
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="listingArea"
+                                    placeholder="1200"
+                                    min="100"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="listing-field">
+
+                                <label for="listingPrice">
+                                    PRICE ₹
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="listingPrice"
+                                    placeholder="5500000"
+                                    min="1"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="listing-form-grid three-columns">
+
+
+                            <div class="listing-field">
+
+                                <label for="listingBedrooms">
+                                    BEDROOMS
+                                </label>
+
+                                <select
+                                    id="listingBedrooms"
+                                    required
+                                >
+
+                                    <option value="0">
+                                        0 / Plot
+                                    </option>
+
+                                    <option value="1">
+                                        1
+                                    </option>
+
+                                    <option value="2">
+                                        2
+                                    </option>
+
+                                    <option value="3">
+                                        3
+                                    </option>
+
+                                    <option value="4">
+                                        4
+                                    </option>
+
+                                    <option value="5">
+                                        5+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="listing-field">
+
+                                <label for="listingBathrooms">
+                                    BATHROOMS
+                                </label>
+
+                                <select
+                                    id="listingBathrooms"
+                                    required
+                                >
+
+                                    <option value="0">
+                                        0
+                                    </option>
+
+                                    <option value="1">
+                                        1
+                                    </option>
+
+                                    <option value="2">
+                                        2
+                                    </option>
+
+                                    <option value="3">
+                                        3
+                                    </option>
+
+                                    <option value="4">
+                                        4
+                                    </option>
+
+                                    <option value="5">
+                                        5+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="listing-field">
+
+                                <label for="listingParking">
+                                    PARKING
+                                </label>
+
+                                <select
+                                    id="listingParking"
+                                    required
+                                >
+
+                                    <option value="0">
+                                        0
+                                    </option>
+
+                                    <option value="1">
+                                        1
+                                    </option>
+
+                                    <option value="2">
+                                        2
+                                    </option>
+
+                                    <option value="3">
+                                        3+
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="listing-form-grid">
+
+
+                            <div class="listing-field">
+
+                                <label for="listingFurnishing">
+                                    FURNISHING
+                                </label>
+
+                                <select
+                                    id="listingFurnishing"
+                                    required
+                                >
+
+                                    <option value="Furnished">
+                                        Furnished
+                                    </option>
+
+                                    <option value="Semi-Furnished">
+                                        Semi-Furnished
+                                    </option>
+
+                                    <option value="Unfurnished">
+                                        Unfurnished
+                                    </option>
+
+                                    <option value="Not Applicable">
+                                        Not Applicable
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="listing-field listing-image-upload">
+
+                                <label for="listingImages">
+                                    PROPERTY PHOTOS
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="listingImages"
+                                    name="images"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    multiple
+                                    required
+                                >
+
+                                <small>
+                                    Upload up to 20 photos • JPG, PNG or WEBP • Max 10 MB each
+                                </small>
+
+                                <div
+                                    id="imageUploadInfo"
+                                    class="image-upload-info"
+                                >
+                                    No photos selected
+                                </div>
+
+                                <div
+                                    id="imagePreview"
+                                    class="image-preview"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="form-section-title">
+                            Description
+                        </div>
+
+
+                        <div class="listing-field">
+
+                            <label for="listingDescription">
+                                PROPERTY DESCRIPTION
+                            </label>
+
+                            <textarea
+                                id="listingDescription"
+                                rows="5"
+                                placeholder="Describe the property, location and important features..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+
+                        <!-- SUBMIT -->
+
+                        <button
+                            type="submit"
+                            class="listing-submit-button"
+                            id="listingSubmitButton"
+                        >
+
+                            Submit Property
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+
+                        <p class="listing-note">
+
+                            Your property will be submitted as
+
+                            <strong>
+                                Pending Verification
+                            </strong>.
+
+                        </p>
+
+                    </form>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LISTING INFORMATION
+                ================================================== -->
+
+                <aside class="listing-info">
+
+
+                    <div class="listing-info-card">
+
+
+                        <div class="info-icon">
+                            AI
+                        </div>
+
+
+                        <span class="section-label">
+                            SMART VERIFICATION
+                        </span>
+
+
+                        <h3>
+
+                            Your listing goes through
+                            an intelligent workflow.
+
+                        </h3>
+
+
+                        <p>
+
+                            HomeSense AI is designed to verify property
+                            information before a listing becomes visible
+                            to customers.
+
+                        </p>
+
+
+
+                        <div class="workflow">
+
+
+                            <div class="workflow-item">
+
+                                <span>
+                                    01
+                                </span>
+
+
+                                <div>
+
+                                    <strong>
+                                        Submit
+                                    </strong>
+
+                                    <small>
+                                        Property information is stored securely.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="workflow-item">
+
+                                <span>
+                                    02
+                                </span>
+
+
+                                <div>
+
+                                    <strong>
+                                        AI Verification
+                                    </strong>
+
+                                    <small>
+                                        Listing quality and pricing can be analysed.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="workflow-item">
+
+                                <span>
+                                    03
+                                </span>
+
+
+                                <div>
+
+                                    <strong>
+                                        Approval
+                                    </strong>
+
+                                    <small>
+                                        Approved listings can reach customers.
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+
+
+            <!-- LISTING RESPONSE -->
+
+            <div
+                id="listingResult"
+                class="listing-result"
+            ></div>
+
+        </section>
+
 
 
         <!-- =====================================================
@@ -722,29 +2107,39 @@
 
         <section class="categories-section">
 
+
             <div class="section-header">
 
                 <div>
+
                     <span class="section-label">
                         EXPLORE
                     </span>
 
+
                     <h2>
                         Search by property type
                     </h2>
+
                 </div>
 
             </div>
 
 
+
             <div class="category-grid">
 
-                <a href="#search" class="category-card">
+
+                <a
+                    href="#search"
+                    class="category-card"
+                >
 
                     <img
                         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=85"
                         alt="Houses"
                     >
+
 
                     <div class="category-overlay">
 
@@ -765,12 +2160,17 @@
                 </a>
 
 
-                <a href="#search" class="category-card">
+
+                <a
+                    href="#search"
+                    class="category-card"
+                >
 
                     <img
                         src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1000&q=85"
                         alt="Apartments"
                     >
+
 
                     <div class="category-overlay">
 
@@ -791,12 +2191,17 @@
                 </a>
 
 
-                <a href="#search" class="category-card">
+
+                <a
+                    href="#search"
+                    class="category-card"
+                >
 
                     <img
                         src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=85"
                         alt="Land and plots"
                     >
+
 
                     <div class="category-overlay">
 
@@ -821,25 +2226,32 @@
         </section>
 
 
+
         <!-- =====================================================
              RESULTS
         ====================================================== -->
 
         <section class="results-section">
 
+
             <div class="section-header">
 
                 <div>
+
                     <span class="section-label">
                         AI SEARCH RESULTS
                     </span>
 
+
                     <h2>
                         Recommended for you
                     </h2>
+
                 </div>
 
             </div>
+
+
 
             <div id="result">
 
@@ -849,13 +2261,17 @@
                         AI
                     </div>
 
+
                     <h3>
                         Your recommendations will appear here
                     </h3>
 
+
                     <p>
-                        Enter your requirements above and let AI Estate
-                        find suitable properties for you.
+
+                        Enter your requirements above and let
+                        HomeSense AI find suitable properties for you.
+
                     </p>
 
                 </div>
@@ -865,35 +2281,60 @@
         </section>
 
 
+
         <!-- =====================================================
-             ABOUT / CTA
+             ABOUT
         ====================================================== -->
 
-        <section class="about-section" id="about">
+        <section
+            class="about-section"
+            id="about"
+        >
+
 
             <div class="about-content">
 
                 <span class="section-label">
-                    THE AI ESTATE DIFFERENCE
+                    THE HOMESENSE AI DIFFERENCE
                 </span>
 
+
                 <h2>
+
                     Real estate decisions,
-                    <span>made smarter.</span>
+
+                    <span>
+                        made smarter.
+                    </span>
+
                 </h2>
 
+
                 <p>
-                    AI Estate combines property data, intelligent
-                    recommendations and modern cloud-ready technology
-                    to create a smarter property discovery experience.
+
+                    HomeSense AI combines property data, intelligent
+                    recommendations, machine-learning based valuation
+                    and cloud-ready technology to create a smarter
+                    property discovery experience.
+
                 </p>
 
-                <a href="#search" class="primary-button dark-button">
+
+                <a
+                    href="#search"
+                    class="primary-button dark-button"
+                >
+
                     Start exploring
-                    <span>→</span>
+
+                    <span>
+                        →
+                    </span>
+
                 </a>
 
             </div>
+
 
 
             <div class="about-stat">
@@ -901,6 +2342,7 @@
                 <strong>
                     AI
                 </strong>
+
 
                 <span>
                     Intelligent property discovery
@@ -913,32 +2355,444 @@
     </main>
 
 
+
+    <!-- =====================================================
+         AUTH REQUIRED MODAL
+    ====================================================== -->
+
+    <div
+        class="auth-modal"
+        id="authModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="authModalTitle"
+    >
+
+        <div class="auth-modal-card">
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeAuthModal"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <div class="auth-modal-icon">
+                🔐
+            </div>
+
+
+            <h3 id="authModalTitle">
+                Login required
+            </h3>
+
+
+            <p id="authModalMessage">
+                Please login to continue with this feature.
+            </p>
+
+
+            <div class="auth-modal-actions">
+
+                <a
+                    href="login.html"
+                    class="modal-login"
+                >
+                    Login
+                </a>
+
+
+                <a
+                    href="signup.html"
+                    class="modal-signup"
+                >
+                    Create Account
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
     <!-- =====================================================
          FOOTER
     ====================================================== -->
 
     <footer>
 
+
         <div class="footer-brand">
-            <span class="brand-mark">A</span>
+
+
+            <span
+                class="brand-logo footer-logo"
+                aria-hidden="true"
+            >
+
+                <span class="logo-roof"></span>
+
+                <span class="logo-house">
+
+                    <span class="logo-door"></span>
+
+                </span>
+
+                <span class="logo-ai-dot logo-dot-1"></span>
+
+                <span class="logo-ai-dot logo-dot-2"></span>
+
+                <span class="logo-ai-line"></span>
+
+            </span>
+
 
             <span>
-                AI<span>Estate</span>
+
+                HomeSense <span>AI</span>
+
             </span>
+
         </div>
+
 
         <p>
             Intelligent real estate discovery.
         </p>
 
+
         <span>
-            © 2026 AI Estate
+            © 2026 HomeSense AI
         </span>
 
     </footer>
 
 
+
+    <!-- =====================================================
+         EXISTING PROJECT JAVASCRIPT
+    ====================================================== -->
+
     <script src="script.js"></script>
 
+
+    <!-- =====================================================
+         AUTHENTICATION JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        const API_BASE_URL = "http://127.0.0.1:5000";
+
+        let currentUser = null;
+
+
+        /* =====================================================
+           AUTH UI ELEMENTS
+        ====================================================== */
+
+        const guestAuth = document.getElementById("guestAuth");
+        const userMenu = document.getElementById("userMenu");
+        const userName = document.getElementById("userName");
+        const userAvatar = document.getElementById("userAvatar");
+        const logoutButton = document.getElementById("logoutButton");
+
+        const authModal = document.getElementById("authModal");
+        const closeAuthModal = document.getElementById("closeAuthModal");
+        const authModalMessage = document.getElementById("authModalMessage");
+
+
+        /* =====================================================
+           CHECK CURRENT LOGIN SESSION
+        ====================================================== */
+
+        async function checkLoginStatus() {
+
+            try {
+
+                const response = await fetch(
+                    `${API_BASE_URL}/auth/me`,
+                    {
+                        method: "GET",
+                        credentials: "include"
+                    }
+                );
+
+                if (!response.ok) {
+
+                    setLoggedOutState();
+
+                    return;
+
+                }
+
+                const data = await response.json();
+
+                if (data.success && data.logged_in) {
+
+                    currentUser = data.user;
+
+                    setLoggedInState();
+
+                } else {
+
+                    setLoggedOutState();
+
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "Authentication status check failed:",
+                    error
+                );
+
+                setLoggedOutState();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           LOGGED-IN STATE
+        ====================================================== */
+
+        function setLoggedInState() {
+
+            guestAuth.style.display = "none";
+
+            userMenu.style.display = "flex";
+
+            const name = currentUser.name || "User";
+
+            userName.textContent = name;
+
+            userAvatar.textContent =
+                name.charAt(0).toUpperCase();
+
+        }
+
+
+        /* =====================================================
+           LOGGED-OUT STATE
+        ====================================================== */
+
+        function setLoggedOutState() {
+
+            currentUser = null;
+
+            guestAuth.style.display = "flex";
+
+            userMenu.style.display = "none";
+
+        }
+
+
+        /* =====================================================
+           AUTH MODAL
+        ====================================================== */
+
+        function showLoginRequired(action) {
+
+            let message =
+                "Please login or create an account to continue.";
+
+            if (action === "favorite") {
+
+                message =
+                    "Please login to save properties to your wishlist.";
+
+            }
+
+            if (action === "list") {
+
+                message =
+                    "Please login to list your property on HomeSense AI.";
+
+            }
+
+            if (action === "contact") {
+
+                message =
+                    "Please login to contact the property owner.";
+
+            }
+
+            if (action === "appointment") {
+
+                message =
+                    "Please login to book a property appointment.";
+
+            }
+
+            authModalMessage.textContent = message;
+
+            authModal.classList.add("active");
+
+        }
+
+
+        function closeLoginModal() {
+
+            authModal.classList.remove("active");
+
+        }
+
+
+        closeAuthModal.addEventListener(
+            "click",
+            closeLoginModal
+        );
+
+
+        authModal.addEventListener(
+            "click",
+            function(event) {
+
+                if (event.target === authModal) {
+
+                    closeLoginModal();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeLoginModal();
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           PROTECTED ACTIONS
+        ====================================================== */
+
+        document
+            .querySelectorAll(".protected-action")
+            .forEach(function(element) {
+
+                element.addEventListener(
+                    "click",
+                    function(event) {
+
+                        if (currentUser) {
+
+                            /*
+                             * User is authenticated.
+                             *
+                             * Actual functionality such as wishlist
+                             * and property listing will be connected
+                             * to the backend in the next phase.
+                             */
+
+                            if (
+                                element.dataset.action === "list"
+                                &&
+                                element.getAttribute("href")
+                            ) {
+
+                                return;
+
+                            }
+
+                            if (
+                                element.dataset.action === "favorite"
+                            ) {
+
+                                event.preventDefault();
+
+                                showLoginRequired("favorite");
+
+                            }
+
+                            return;
+
+                        }
+
+                        event.preventDefault();
+
+                        const action =
+                            element.dataset.action || "general";
+
+                        showLoginRequired(action);
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           LOGOUT
+        ====================================================== */
+
+        logoutButton.addEventListener(
+            "click",
+            async function() {
+
+                logoutButton.disabled = true;
+
+                logoutButton.textContent = "Logging out...";
+
+                try {
+
+                    await fetch(
+                        `${API_BASE_URL}/auth/logout`,
+                        {
+                            method: "POST",
+                            credentials: "include"
+                        }
+                    );
+
+                } catch (error) {
+
+                    console.warn(
+                        "Logout request failed:",
+                        error
+                    );
+
+                }
+
+                setLoggedOutState();
+
+                logoutButton.disabled = false;
+
+                logoutButton.textContent = "Logout";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+        /* =====================================================
+           START AUTH CHECK
+        ====================================================== */
+
+        checkLoginStatus();
+
+    </script>
+
+
 </body>
+
 </html>

@@ -1,8 +1,16 @@
 __pycache__/
 *.pyc
+
+# Environment files
 .env
 .env.*
+
+# Virtual environments
 venv/
 .venv/
+
 # ML model files
 ml/*.pkl
+
+# User-uploaded property images
+uploads/

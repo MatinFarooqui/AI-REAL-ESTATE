@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>List Property | HomeSense AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 700;
+            color: #111827;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* PAGE */
+        .page-container {
+            width: 92%;
+            max-width: 1050px;
+            margin: 45px auto;
+        }
+
+        .page-header {
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+            color: #111827;
+        }
+
+        .page-header p {
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        /* FORM CARD */
+        .form-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+            border: 1px solid #e5e7eb;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111827;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: #6b7280;
+            margin-top: -12px;
+            margin-bottom: 18px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            background: #ffffff;
+            color: #111827;
+            transition: 0.2s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* LOCATION */
+        .location-box {
+            border: 1px solid #dbe3ef;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .location-action {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .location-button {
+            border: none;
+            background: #2563eb;
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .location-button:hover {
+            background: #1d4ed8;
+        }
+
+        .location-button:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .location-status {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .location-note {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 12px;
+        }
+
+        .detected-address {
+            margin-top: 15px;
+            padding: 12px 14px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            color: #4b5563;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* IMAGE UPLOAD */
+        .upload-box {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            background: #f8fafc;
+        }
+
+        .upload-box input {
+            border: none;
+            padding: 0;
+            margin-bottom: 10px;
+        }
+
+        .upload-box small {
+            display: block;
+            color: #6b7280;
+            margin-top: 8px;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .preview-item {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            background: #f3f4f6;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* SUBMIT */
+        .submit-section {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 25px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background: #111827;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .submit-button:hover {
+            background: #1f2937;
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 9px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .message.success {
+            display: block;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+        }
+
+        .message.error {
+            display: block;
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .page-container {
+                width: 94%;
+                margin: 25px auto;
+            }
+
+            .form-card {
+                padding: 22px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .preview-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            HomeSense <span>AI</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="list-property.html">List Property</a>
+        </div>
+    </nav>
+
+
+    <!-- PAGE -->
+    <main class="page-container">
+
+        <div class="page-header">
+            <h1>List Your Property</h1>
+            <p>Provide accurate property details to reach the right buyers and renters.</p>
+        </div>
+
+
+        <form id="propertyForm" class="form-card">
+
+            <!-- OWNER -->
+            <div class="section">
+
+                <h2 class="section-title">Owner Information</h2>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="owner_id">Owner ID</label>
+                        <input
+                            type="text"
+                            id="owner_id"
+                            name="owner_id"
+                            placeholder="Enter owner ID"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="listing_type">Listing Type</label>
+
+                        <select id="listing_type" name="listing_type" required>
+                            <option value="">Select listing type</option>
+                            <option value="Sale">Sale</option>
+                            <option value="Rent">Rent</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- PROPERTY LOCATION -->
+            <div class="section">
+
+                <h2 class="section-title">Property Location</h2>
+
+                <p class="section-subtitle">
+                    Automatically detect the property location or enter it manually.
+                </p>
+
+                <div class="location-box">
+
+                    <div class="location-action">
+
+                        <button
+                            type="button"
+                            id="locationButton"
+                            class="location-button"
+                        >
+                            📍 Use My Current Location
+                        </button>
+
+                        <span id="locationStatus" class="location-status">
+                            You can use GPS or enter the location manually.
+                        </span>
+
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="city">City</label>
+
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                placeholder="e.g. Aurangabad"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="locality">Locality</label>
+
+                            <input
+                                type="text"
+                                id="locality"
+                                name="locality"
+                                placeholder="e.g. Cidco"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="location_address">
+                                Detected Address
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location_address"
+                                name="location_address"
+                                placeholder="Address will appear here after GPS detection"
+                            >
+                        </div>
+
+                    </div>
+
+                    <p class="location-note">
+                        Allow location access when your browser asks for permission.
+                        You can always edit the City and Locality manually.
+                    </p>
+
+                    <div
+                        id="detectedAddress"
+                        class="detected-address"
+                        style="display: none;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROPERTY DETAILS -->
+            <div class="section">
+
+                <h2 class="section-title">Property Details</h2>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="property_type">Property Type</label>
+
+                        <select
+                            id="property_type"
+                            name="property_type"
+                            required
+                        >
+                            <option value="">Select property type</option>
+                            <option value="Plot">Plot</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="House">House</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="area">Area (sq ft)</label>
+
+                        <input
+                            type="number"
+                            id="area"
+                            name="area"
+                            min="1"
+                            placeholder="e.g. 1200"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price / Rent (₹)</label>
+
+                        <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            min="1"
+                            placeholder="e.g. 5000000"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bedrooms">Bedrooms</label>
+
+                        <input
+                            type="number"
+                            id="bedrooms"
+                            name="bedrooms"
+                            min="0"
+                            placeholder="e.g. 2"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bathrooms">Bathrooms</label>
+
+                        <input
+                            type="number"
+                            id="bathrooms"
+                            name="bathrooms"
+                            min="0"
+                            placeholder="e.g. 2"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parking">Parking</label>
+
+                        <select id="parking" name="parking" required>
+                            <option value="">Select parking</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="furnishing">Furnishing</label>
+
+                        <select id="furnishing" name="furnishing" required>
+                            <option value="">Select furnishing</option>
+                            <option value="Fully Furnished">Fully Furnished</option>
+                            <option value="Semi Furnished">Semi Furnished</option>
+                            <option value="Unfurnished">Unfurnished</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="description">Property Description</label>
+
+                        <textarea
+                            id="description"
+                            name="description"
+                            placeholder="Describe the property, nearby facilities, road access, amenities, etc."
+                            required
+                        ></textarea>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- IMAGES -->
+            <div class="section">
+
+                <h2 class="section-title">Property Photos</h2>
+
+                <p class="section-subtitle">
+                    Upload clear photos of the property.
+                </p>
+
+                <div class="upload-box">
+
+                    <input
+                        type="file"
+                        id="images"
+                        name="images"
+                        accept="image/*"
+                        multiple
+                    >
+
+                    <small>
+                        Upload up to 20 photos • JPG, PNG or WEBP • Max 100 MB each
+                    </small>
+
+                </div>
+
+                <div id="previewGrid" class="preview-grid"></div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+            <div class="submit-section">
+
+                <button
+                    type="submit"
+                    id="submitButton"
+                    class="submit-button"
+                >
+                    Submit Property
+                </button>
+
+                <div id="message" class="message"></div>
+
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <script>
+
+        /* =========================================================
+           IMAGE UPLOAD
+        ========================================================= */
+
+        const imageInput = document.getElementById("images");
+        const previewGrid = document.getElementById("previewGrid");
+
+        const MAX_IMAGES = 20;
+        const MAX_IMAGE_SIZE = 100 * 1024 * 1024;
+
+        let selectedFiles = [];
+
+
+        imageInput.addEventListener("change", function () {
+
+            const newFiles = Array.from(this.files);
+
+            for (const file of newFiles) {
+
+                if (!file.type.startsWith("image/")) {
+                    alert(`${file.name} is not a valid image.`);
+                    continue;
+                }
+
+                if (file.size > MAX_IMAGE_SIZE) {
+                    alert(`${file.name} exceeds the 100 MB limit.`);
+                    continue;
+                }
+
+                if (selectedFiles.length >= MAX_IMAGES) {
+                    alert(`You can upload a maximum of ${MAX_IMAGES} images.`);
+                    break;
+                }
+
+                selectedFiles.push(file);
+            }
+
+            updatePreview();
+
+            this.value = "";
+        });
+
+
+        function updatePreview() {
+
+            previewGrid.innerHTML = "";
+
+            selectedFiles.forEach((file, index) => {
+
+                const wrapper = document.createElement("div");
+                wrapper.className = "preview-item";
+
+                const img = document.createElement("img");
+
+                img.src = URL.createObjectURL(file);
+
+                const removeButton = document.createElement("button");
+
+                removeButton.type = "button";
+                removeButton.className = "remove-image";
+                removeButton.textContent = "×";
+
+                removeButton.addEventListener("click", function () {
+
+                    selectedFiles.splice(index, 1);
+
+                    updatePreview();
+
+                });
+
+                wrapper.appendChild(img);
+                wrapper.appendChild(removeButton);
+
+                previewGrid.appendChild(wrapper);
+            });
+        }
+
+
+        /* =========================================================
+           GPS LOCATION
+        ========================================================= */
+
+        const locationButton = document.getElementById("locationButton");
+        const locationStatus = document.getElementById("locationStatus");
+
+        const cityInput = document.getElementById("city");
+        const localityInput = document.getElementById("locality");
+        const addressInput = document.getElementById("location_address");
+
+        const detectedAddress = document.getElementById("detectedAddress");
+
+
+        locationButton.addEventListener("click", function () {
+
+            if (!navigator.geolocation) {
+
+                locationStatus.textContent =
+                    "GPS is not supported by this browser. Please enter the location manually.";
+
+                return;
+            }
+
+
+            locationButton.disabled = true;
+
+            locationButton.textContent = "📍 Detecting Location...";
+
+            locationStatus.textContent =
+                "Please allow location access if your browser asks.";
+
+            detectedAddress.style.display = "none";
+
+
+            navigator.geolocation.getCurrentPosition(
+
+                async function (position) {
+
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+
+                    try {
+
+                        locationStatus.textContent =
+                            "Location detected. Finding city and locality...";
+
+
+                        const response = await fetch(
+                            `http://127.0.0.1:5000/reverse-geocode?lat=${encodeURIComponent(latitude)}&lon=${encodeURIComponent(longitude)}`
+                        );
+
+
+                        const data = await response.json();
+
+
+                        if (!response.ok || !data.success) {
+
+                            throw new Error(
+                                data.error || "Unable to find the locality."
+                            );
+                        }
+
+
+                        /*
+                         * IMPORTANT:
+                         * Only city/locality/address are put into
+                         * the property form.
+                         *
+                         * Latitude and longitude are NOT stored.
+                         */
+
+                        if (data.city) {
+                            cityInput.value = data.city;
+                        }
+
+                        if (data.locality) {
+                            localityInput.value = data.locality;
+                        }
+
+                        if (data.address) {
+
+                            addressInput.value = data.address;
+
+                            detectedAddress.textContent =
+                                "Detected: " + data.address;
+
+                            detectedAddress.style.display = "block";
+                        }
+
+
+                        locationButton.textContent =
+                            "✓ Location Detected";
+
+                        locationStatus.textContent =
+                            "City and locality have been automatically filled. You can edit them if needed.";
+
+                    }
+
+                    catch (error) {
+
+                        console.error(error);
+
+                        locationStatus.textContent =
+                            "Couldn't determine the locality. Please enter City and Locality manually.";
+
+                        locationButton.textContent =
+                            "📍 Try Again";
+
+                    }
+
+                    finally {
+
+                        locationButton.disabled = false;
+                    }
+
+                },
+
+                function (error) {
+
+                    console.error(error);
+
+                    let message =
+                        "Unable to detect your location. Please enter City and Locality manually.";
+
+                    if (error.code === 1) {
+                        message =
+                            "Location permission was denied. Please allow access or enter the location manually.";
+                    }
+
+                    if (error.code === 2) {
+                        message =
+                            "Your location could not be determined. Please enter it manually.";
+                    }
+
+                    if (error.code === 3) {
+                        message =
+                            "Location request timed out. Please try again or enter it manually.";
+                    }
+
+
+                    locationStatus.textContent = message;
+
+                    locationButton.textContent =
+                        "📍 Try Again";
+
+                    locationButton.disabled = false;
+                },
+
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 0
+                }
+            );
+
+        });
+
+
+        /* =========================================================
+           FORM SUBMISSION
+        ========================================================= */
+
+        const propertyForm = document.getElementById("propertyForm");
+        const submitButton = document.getElementById("submitButton");
+        const message = document.getElementById("message");
+
+
+        propertyForm.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+
+            if (selectedFiles.length === 0) {
+
+                message.className = "message error";
+
+                message.textContent =
+                    "Please upload at least one property image.";
+
+                return;
+            }
+
+
+            const formData = new FormData(propertyForm);
+
+
+            /*
+             * Remove the automatically-created images field
+             * and add our selected files manually.
+             */
+
+            formData.delete("images");
+
+
+            selectedFiles.forEach(function (file) {
+
+                formData.append("images", file);
+
+            });
+
+
+            submitButton.disabled = true;
+
+            submitButton.textContent = "Submitting Property...";
+
+            message.className = "message";
+
+            message.textContent = "";
+
+
+            try {
+
+                const response = await fetch(
+                    "http://127.0.0.1:5000/list-property",
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+
+                const data = await response.json();
+
+
+                if (!response.ok || !data.success) {
+
+                    throw new Error(
+                        data.error || "Property submission failed."
+                    );
+                }
+
+
+                message.className = "message success";
+
+                message.textContent =
+                    `Property submitted successfully! Property ID: ${data.property_id}. Status: ${data.status}. Images uploaded: ${data.image_count}.`;
+
+
+                propertyForm.reset();
+
+                selectedFiles = [];
+
+                updatePreview();
+
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                message.className = "message error";
+
+                message.textContent =
+                    error.message || "Something went wrong.";
+
+            }
+
+            finally {
+
+                submitButton.disabled = false;
+
+                submitButton.textContent =
+                    "Submit Property";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
