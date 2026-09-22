@@ -25,3 +25,4 @@ uploads/
 # ML artifacts
 ml/*.joblib
 ml/*.pkl
+.vercel

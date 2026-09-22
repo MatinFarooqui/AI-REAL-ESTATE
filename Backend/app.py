@@ -14,8 +14,8 @@ import pandas as pd
 from flask import Flask, jsonify, request, send_from_directory, session
 from werkzeug.utils import secure_filename
 
-from auth import auth_bp
-from mongodb import (
+from Backend.auth import auth_bp
+from Backend.mongodb import (
     client,
     db,
     users_collection,
@@ -27,8 +27,8 @@ from mongodb import (
     notifications_collection,
     reports_collection,
 )
-from property import calculate_rate
-from valuation_engine import estimate_property_value, get_model_metrics
+from Backend.property import calculate_rate
+from Backend.valuation_engine import estimate_property_value, get_model_metrics
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent

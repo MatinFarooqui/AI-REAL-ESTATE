@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from flask import Blueprint, jsonify, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from mongodb import db
+from Backend.mongodb import db
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")

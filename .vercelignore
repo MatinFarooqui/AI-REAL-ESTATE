@@ -1,0 +1,12 @@
+.env
+.env.*
+.venv/
+venv/
+uploads/
+*.zip
+
+ml/real_estate_price_model.pkl
+ml/real_estate_price_model_v2.pkl
+ml/real_estate_price_model_v3.pkl
+ml/real_estate_price_model_v4.pkl
+ml/real_estate_price_model_v5.pkl
