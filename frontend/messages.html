@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Messages | RealtyKey AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<!-- Shared RealtyKey styling -->
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* ============================================================
+   MESSAGES PAGE
+============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+
+.navbar {
+    height: 74px;
+    background: #fff;
+    border-bottom: 1px solid #e5e9f0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 6%;
+}
+
+.brand {
+    font: 800 22px "Manrope", sans-serif;
+}
+
+.brand span {
+    color: #3157d5;
+}
+
+.back {
+    color: #667085;
+    font-weight: 600;
+}
+
+/* ============================================================
+   PAGE
+============================================================ */
+
+.page {
+    width: min(1120px, 92%);
+    margin: 0 auto;
+    padding: 32px 0 60px;
+}
+
+.head {
+    margin-bottom: 20px;
+}
+
+.head .label {
+    color: #3157d5;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.head h1 {
+    font: 800 34px "Manrope", sans-serif;
+    margin-top: 5px;
+}
+
+.head p {
+    color: #667085;
+    margin-top: 6px;
+}
+
+/* ============================================================
+   MESSAGES SHELL
+============================================================ */
+
+.messages-shell {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+
+    min-height: 560px;
+
+    background: #fff;
+    border: 1px solid #e5e9f0;
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    box-shadow: 0 16px 40px rgba(15, 23, 42, .05);
+}
+
+/* ============================================================
+   CONVERSATIONS
+============================================================ */
+
+.conversation-list {
+    border-right: 1px solid #e5e9f0;
+    padding: 12px;
+}
+
+.conversation-item {
+    width: 100%;
+
+    display: flex;
+    gap: 10px;
+
+    text-align: left;
+
+    padding: 12px;
+
+    border: 0;
+    background: #fff;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+}
+
+.conversation-item:hover {
+    background: #f8fafc;
+}
+
+.conversation-item img {
+    width: 54px;
+    height: 48px;
+
+    border-radius: 9px;
+
+    object-fit: cover;
+
+    background: #eef2f7;
+
+    flex: 0 0 auto;
+}
+
+.conversation-item span {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    min-width: 0;
+}
+
+.conversation-item strong {
+    font-size: 14px;
+}
+
+.conversation-item small {
+    color: #667085;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ============================================================
+   CHAT PANEL
+============================================================ */
+
+.chat-panel {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.chat-panel-header {
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #e5e9f0;
+}
+
+.chat-panel-header small {
+    color: #98a2b3;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.chat-panel-header h2 {
+    font: 800 21px "Manrope", sans-serif;
+    margin-top: 4px;
+}
+
+.chat-messages {
+    flex: 1;
+
+    padding: 20px;
+
+    overflow: auto;
+
+    background: #f8fafc;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.chat-bubble {
+    max-width: 72%;
+
+    padding: 11px 13px;
+
+    border-radius: 15px;
+
+    background: #fff;
+
+    border: 1px solid #e5e9f0;
+
+    align-self: flex-start;
+}
+
+.chat-bubble.own {
+    align-self: flex-end;
+
+    background: #3157d5;
+    color: #fff;
+
+    border-color: #3157d5;
+}
+
+.chat-bubble span {
+    font-size: 10px;
+    font-weight: 800;
+    opacity: .75;
+}
+
+.chat-bubble p {
+    font-size: 14px;
+    line-height: 1.55;
+
+    margin-top: 3px;
+}
+
+/* ============================================================
+   MESSAGE COMPOSER
+============================================================ */
+
+.chat-compose {
+    display: flex;
+
+    gap: 8px;
+
+    padding: 14px;
+
+    border-top: 1px solid #e5e9f0;
+
+    background: #fff;
+}
+
+.chat-compose input {
+    flex: 1;
+
+    min-width: 0;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 11px;
+
+    padding: 12px 13px;
+
+    outline: none;
+}
+
+.chat-compose input:focus {
+    border-color: #3157d5;
+
+    box-shadow:
+        0 0 0 3px rgba(49, 87, 213, .08);
+}
+
+.chat-compose button {
+    border: 0;
+
+    background: #3157d5;
+
+    color: #fff;
+
+    border-radius: 11px;
+
+    padding: 0 18px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.chat-compose button:hover {
+    background: #2648bb;
+}
+
+.chat-status,
+.message-empty {
+    padding: 24px;
+    color: #667085;
+}
+
+.message-empty {
+    text-align: center;
+    margin: auto;
+}
+
+.message-empty h3 {
+    font: 800 18px "Manrope", sans-serif;
+
+    color: #172033;
+
+    margin-bottom: 6px;
+}
+
+/* ============================================================
+   AI ASSISTANT - MESSAGES PAGE ONLY
+   Prevent dynamically-created widget from becoming page content.
+============================================================ */
+
+#assistantToggle {
+    position: fixed !important;
+
+    right: 22px !important;
+    bottom: 22px !important;
+
+    width: 68px !important;
+    height: 68px !important;
+
+    min-width: 68px !important;
+    min-height: 68px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 2px solid #dbe4f7 !important;
+
+    border-radius: 50% !important;
+
+    background: #fff !important;
+
+    overflow: hidden !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, .18),
+        0 2px 8px rgba(49, 94, 251, .08) !important;
+
+    cursor: pointer !important;
+
+    z-index: 9999 !important;
+}
+
+#assistantToggle:hover {
+    background: #f8faff !important;
+
+    transform: translateY(-2px) !important;
+}
+
+/* Robot image created by script.js */
+#assistantToggle img {
+    display: block !important;
+
+    width: 62px !important;
+    height: 62px !important;
+
+    max-width: 62px !important;
+    max-height: 62px !important;
+
+    object-fit: contain !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    pointer-events: none !important;
+}
+
+/* Older dynamically-generated assistant icon */
+#assistantToggle .assistant-toggle-icon {
+    display: none !important;
+}
+
+/* ============================================================
+   AI ASSISTANT PANEL
+============================================================ */
+
+#assistantPanel {
+    position: fixed !important;
+
+    right: 22px !important;
+    bottom: 104px !important;
+
+    width: min(390px, calc(100vw - 34px)) !important;
+
+    height: min(610px, calc(100vh - 125px)) !important;
+
+    display: none !important;
+    flex-direction: column !important;
+
+    overflow: hidden !important;
+
+    background: #fff !important;
+
+    border: 1px solid #e2e8f0 !important;
+
+    border-radius: 20px !important;
+
+    box-shadow:
+        0 26px 80px rgba(15, 23, 42, .20) !important;
+
+    z-index: 9998 !important;
+}
+
+#assistantPanel.active {
+    display: flex !important;
+}
+
+#assistantPanel .assistant-header {
+    display: flex !important;
+
+    justify-content: space-between !important;
+
+    gap: 14px !important;
+
+    padding: 17px 18px !important;
+
+    background: #1e293b !important;
+
+    color: #fff !important;
+}
+
+#assistantPanel .assistant-header h3 {
+    margin: 4px 0 !important;
+
+    color: #fff !important;
+
+    font: 800 18px "Manrope", sans-serif !important;
+}
+
+#assistantPanel .assistant-header p {
+    color: #cbd5e1 !important;
+
+    font-size: 11px !important;
+}
+
+#assistantPanel .assistant-header .section-label {
+    color: #93c5fd !important;
+}
+
+#assistantPanel .assistant-close {
+    width: 32px !important;
+    height: 32px !important;
+
+    border: 0 !important;
+
+    border-radius: 50% !important;
+
+    background: rgba(255,255,255,.08) !important;
+
+    color: #fff !important;
+
+    cursor: pointer !important;
+
+    font-size: 20px !important;
+}
+
+#assistantPanel .assistant-messages {
+    flex: 1 !important;
+
+    overflow-y: auto !important;
+
+    padding: 15px !important;
+
+    background: #f7f9fc !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 9px !important;
+}
+
+#assistantPanel .assistant-bubble {
+    max-width: 85% !important;
+
+    margin-bottom: 0 !important;
+
+    padding: 10px 12px !important;
+
+    border-radius: 13px !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.55 !important;
+
+    white-space: pre-line !important;
+}
+
+#assistantPanel .assistant-bubble.bot {
+    align-self: flex-start !important;
+
+    background: #fff !important;
+
+    color: #334155 !important;
+
+    border: 1px solid #e3e8ef !important;
+}
+
+#assistantPanel .assistant-bubble.user {
+    align-self: flex-end !important;
+
+    background: #315efb !important;
+
+    color: #fff !important;
+}
+
+#assistantPanel .assistant-quick-prompts {
+    display: flex !important;
+
+    flex-wrap: wrap !important;
+
+    gap: 6px !important;
+
+    padding: 10px 12px !important;
+
+    background: #fff !important;
+
+    border-top: 1px solid #eef2f6 !important;
+}
+
+#assistantPanel .assistant-quick-prompts button {
+    padding: 6px 8px !important;
+
+    border: 1px solid #dde4ef !important;
+
+    border-radius: 999px !important;
+
+    background: #fff !important;
+
+    color: #475467 !important;
+
+    font-size: 10px !important;
+
+    font-weight: 800 !important;
+
+    cursor: pointer !important;
+}
+
+#assistantPanel .assistant-form {
+    display: flex !important;
+
+    gap: 7px !important;
+
+    padding: 12px !important;
+
+    background: #fff !important;
+
+    border-top: 1px solid #eef2f6 !important;
+}
+
+#assistantPanel .assistant-form input {
+    flex: 1 !important;
+
+    min-width: 0 !important;
+
+    padding: 11px 12px !important;
+
+    border: 1px solid #d6dce5 !important;
+
+    border-radius: 10px !important;
+
+    outline: none !important;
+
+    font-size: 12px !important;
+}
+
+#assistantPanel .assistant-form button {
+    flex: 0 0 auto !important;
+
+    border: 0 !important;
+
+    border-radius: 10px !important;
+
+    padding: 0 13px !important;
+
+    background: #315efb !important;
+
+    color: #fff !important;
+
+    font-size: 11px !important;
+
+    font-weight: 900 !important;
+
+    cursor: pointer !important;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 780px) {
+
+    .messages-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .conversation-list {
+        border-right: 0;
+        border-bottom: 1px solid #e5e9f0;
+
+        max-height: 240px;
+
+        overflow: auto;
+    }
+
+    .chat-panel {
+        min-height: 520px;
+    }
+
+    .chat-bubble {
+        max-width: 86%;
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .navbar {
+        height: 66px;
+
+        padding: 0 4%;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .page {
+        width: 94%;
+
+        padding-top: 24px;
+    }
+
+    .chat-compose {
+        flex-direction: column;
+    }
+
+    .chat-compose button {
+        height: 44px;
+    }
+
+    #assistantToggle {
+        width: 62px !important;
+        height: 62px !important;
+
+        min-width: 62px !important;
+        min-height: 62px !important;
+
+        right: 15px !important;
+        bottom: 15px !important;
+    }
+
+    #assistantToggle img {
+        width: 56px !important;
+        height: 56px !important;
+    }
+
+    #assistantPanel {
+        right: 10px !important;
+        bottom: 88px !important;
+
+        width: calc(100vw - 20px) !important;
+
+        height: calc(100vh - 115px) !important;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="index.html" class="brand">
+        RealtyKey <span>AI</span>
+    </a>
+
+    <a href="index.html" class="back">
+        ← Home
+    </a>
+
+</nav>
+
+<main class="page">
+
+    <div class="head">
+
+        <div class="label">
+            COMMUNICATION
+        </div>
+
+        <h1>
+            Messages
+        </h1>
+
+        <p>
+            Buyer and seller conversations for your properties.
+        </p>
+
+    </div>
+
+    <div class="messages-shell">
+
+        <div
+            id="conversationList"
+            class="conversation-list"
+        ></div>
+
+        <div
+            id="chatPanel"
+            class="chat-panel"
+        >
+
+            <div class="message-empty">
+
+                <h3>
+                    Select a conversation
+                </h3>
+
+                <p>
+                    Your messages will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

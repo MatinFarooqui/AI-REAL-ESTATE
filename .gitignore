@@ -1,16 +1,27 @@
+# Python
 __pycache__/
-*.pyc
-
-# Environment files
-.env
-.env.*
+*.py[cod]
+*.pyo
 
 # Virtual environments
-venv/
 .venv/
+venv/
 
-# ML model files
-ml/*.pkl
+# Environment / secrets
+.env
+.env.*
+!.env.example
 
-# User-uploaded property images
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Runtime uploads / generated files
 uploads/
+*.log
+
+# ML artifacts
+ml/*.joblib
+ml/*.pkl

@@ -82,7 +82,7 @@ textarea {
 
 
 /* =====================================================
-   HOMESENSE LOGO
+   REALTYKEY BRANDING
 ===================================================== */
 
 .brand {
@@ -2859,6 +2859,2358 @@ footer {
 
     .image-preview {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+/* RealtyKey AI logo */
+.brand-image {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* =====================================================
+   REALTYKEY AI BRAND LOGO
+===================================================== */
+.brand-image {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    display: block;
+    flex: 0 0 44px;
+}
+
+.footer-brand {
+    align-items: center;
+}
+
+.footer-brand-image {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+}
+
+/* =====================================================
+   REALTYKEY AI FINAL INTEGRATION UI
+===================================================== */
+
+.dynamic-account-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dynamic-account-links a,
+.admin-nav-link {
+    color: #475569;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+.dynamic-account-links a:hover,
+.admin-nav-link:hover {
+    background: #f1f5f9;
+    color: #3157d5;
+}
+
+.location-suggestions {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    z-index: 300;
+    background: #ffffff;
+    border: 1px solid #dfe5ec;
+    border-radius: 12px;
+    box-shadow: 0 16px 35px rgba(15, 23, 42, .14);
+    overflow: hidden;
+}
+
+.location-suggestion {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #eef2f6;
+    background: #ffffff;
+    text-align: left;
+    padding: 11px 13px;
+    cursor: pointer;
+}
+
+.location-suggestion:last-child {
+    border-bottom: 0;
+}
+
+.location-suggestion:hover {
+    background: #f8fafc;
+}
+
+.location-suggestion strong,
+.location-suggestion small {
+    display: block;
+}
+
+.location-suggestion strong {
+    color: #172033;
+    font-size: 13px;
+}
+
+.location-suggestion small {
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 3px;
+}
+
+.user-listings-section {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.user-listings-section .result-empty {
+    grid-column: 1 / -1;
+}
+
+.listing-success,
+.listing-error,
+.prediction-success,
+.prediction-error,
+.prediction-loading {
+    padding: 20px;
+    border-radius: 16px;
+}
+
+.listing-success {
+    background: #ecfdf3;
+    border: 1px solid #b7ebce;
+}
+
+.listing-error,
+.prediction-error {
+    background: #fff7f6;
+    border: 1px solid #ffd6d2;
+}
+
+.prediction-success {
+    background: #101828;
+    color: white;
+}
+
+.prediction-success strong {
+    display: block;
+    font-size: 30px;
+    margin: 5px 0;
+}
+
+@media (max-width: 900px) {
+    .dynamic-account-links {
+        gap: 2px;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 700px) {
+    .dynamic-account-links {
+        width: 100%;
+        justify-content: flex-start;
+        order: 3;
+    }
+
+    .dynamic-account-links a,
+    .admin-nav-link {
+        font-size: 12px;
+        padding: 7px 8px;
+    }
+}
+
+/* =====================================================
+   REALTYKEY AI - DASHBOARD & INTERACTIVE ENHANCEMENTS
+===================================================== */
+
+/* Brand Logo Image */
+.brand-image {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Location Hierarchy & Controls */
+.location-hierarchical-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.gps-button {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.gps-button:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+}
+
+.quick-location-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.quick-chip-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.location-chip {
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.location-chip:hover,
+.location-chip.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+/* Optional Filters Drawer */
+.filters-toggle-btn {
+    background: transparent;
+    border: 1px dashed #cbd5e1;
+    color: #475569;
+    padding: 10px 16px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.filters-toggle-btn:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+.optional-filters-panel {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    padding: 18px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.optional-filters-panel.active {
+    display: grid;
+}
+
+/* Enhanced Property Card */
+.property-card {
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09);
+}
+
+.card-compare-check {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 5;
+    background: rgba(15, 23, 42, 0.75);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+}
+
+.card-compare-check input {
+    cursor: pointer;
+}
+
+.property-card-location {
+    font-size: 13px;
+    color: #475569;
+    margin: 6px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+}
+
+.property-features-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0;
+}
+
+.feature-pill {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 36px 0 20px;
+}
+
+.page-btn {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    padding: 10px 18px;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+.page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.page-info {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+/* Rate Calculator Card */
+.calculator-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    margin-top: 24px;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.calculator-result {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 22px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.calculator-result h4 {
+    font-size: 12px;
+    font-weight: 800;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.calculator-result strong {
+    font-size: 34px;
+    color: #172033;
+    font-family: "Manrope", sans-serif;
+    display: block;
+}
+
+/* AI Valuation Card & Display (Highest Priority) */
+.valuation-wrapper {
+    background: linear-gradient(135deg, #101828 0%, #1e293b 100%);
+    color: white;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    margin: 40px 0;
+}
+
+.valuation-header {
+    margin-bottom: 28px;
+}
+
+.valuation-header span {
+    color: #60a5fa;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.valuation-header h2 {
+    font-size: 32px;
+    font-family: "Manrope", sans-serif;
+    margin-top: 6px;
+}
+
+.valuation-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.valuation-form-grid label {
+    display: block;
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.valuation-form-grid input,
+.valuation-form-grid select {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    border-radius: 10px;
+    padding: 12px 14px;
+    width: 100%;
+}
+
+.valuation-form-grid input:focus,
+.valuation-form-grid select:focus {
+    border-color: #60a5fa;
+    outline: none;
+}
+
+.valuation-form-grid select option {
+    background: #1e293b;
+    color: white;
+}
+
+.valuation-submit-btn {
+    background: #2563eb;
+    color: white;
+    border: 0;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.valuation-submit-btn:hover {
+    background: #1d4ed8;
+}
+
+.valuation-result-box {
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 26px;
+}
+
+.valuation-price-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.valuation-price-hero .price-display {
+    font-size: 38px;
+    font-weight: 800;
+    font-family: "Manrope", sans-serif;
+    color: #60a5fa;
+}
+
+.confidence-badge {
+    display: inline-flex;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.confidence-high { background: #065f46; color: #a7f3d0; }
+.confidence-moderate { background: #1e40af; color: #bfdbfe; }
+.confidence-fair { background: #854d0e; color: #fef08a; }
+.confidence-broader { background: #374151; color: #d1d5db; }
+
+.valuation-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.val-stat-box {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.val-stat-box small {
+    display: block;
+    color: #94a3b8;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.val-stat-box strong {
+    font-size: 16px;
+    color: white;
+}
+
+.anomaly-alert-box {
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.anomaly-fair { background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; color: #a7f3d0; }
+.anomaly-high { background: rgba(239, 68, 68, 0.12); border: 1px solid #ef4444; color: #fca5a5; }
+.anomaly-low { background: rgba(245, 158, 11, 0.12); border: 1px solid #f59e0b; color: #fde68a; }
+
+.factors-list {
+    margin-top: 16px;
+    padding-left: 20px;
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* Property Comparison Drawer & Modal */
+.compare-floating-bar {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111827;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 999px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    display: none;
+    align-items: center;
+    gap: 16px;
+    z-index: 999;
+}
+
+.compare-floating-bar.active {
+    display: flex;
+}
+
+.compare-modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    font-size: 13px;
+}
+
+.compare-modal-table th,
+.compare-modal-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.compare-modal-table th {
+    background: #f8fafc;
+    font-weight: 700;
+    color: #475569;
+    width: 25%;
+}
+
+/* AI Assistant Floating Widget */
+.ai-assistant-toggle {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    border: 0;
+    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.38);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 998;
+    transition: transform 0.2s;
+}
+
+.ai-assistant-toggle:hover {
+    transform: scale(1.08);
+}
+
+.ai-assistant-panel {
+    position: fixed;
+    bottom: 96px;
+    right: 26px;
+    width: min(390px, 92vw);
+    height: 540px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2);
+    border: 1px solid #e2e8f0;
+    display: none;
+    flex-direction: column;
+    z-index: 998;
+    overflow: hidden;
+}
+
+.ai-assistant-panel.active {
+    display: flex;
+}
+
+.assistant-header {
+    background: #1e293b;
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.assistant-header h3 {
+    font-size: 16px;
+    font-family: "Manrope", sans-serif;
+}
+
+.assistant-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.assistant-bubble {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.assistant-bubble.bot {
+    background: white;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+    align-self: flex-start;
+}
+
+.assistant-bubble.user {
+    background: #2563eb;
+    color: white;
+    align-self: flex-end;
+}
+
+.assistant-quick-prompts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 8px 14px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.assistant-quick-prompts button {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #475569;
+}
+
+.assistant-input-bar {
+    display: flex;
+    padding: 10px;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+}
+
+.assistant-input-bar input {
+    flex: 1;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+.assistant-input-bar button {
+    background: #2563eb;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    padding: 0 14px;
+    margin-left: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Notifications Badge & Dropdown */
+.notif-btn {
+    position: relative;
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ef4444;
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notifications-dropdown {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.15);
+    display: none;
+    z-index: 1001;
+    padding: 12px;
+}
+
+.notifications-dropdown.active {
+    display: block;
+}
+
+.notif-item {
+    padding: 10px;
+    border-radius: 8px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.notif-item:hover {
+    background: #f8fafc;
+}
+
+.notif-item.unread {
+    background: #eff6ff;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .location-hierarchical-row {
+        grid-template-columns: 1fr;
+    }
+    .valuation-price-hero .price-display {
+        font-size: 28px;
+    }
+}
+
+
+/* ==========================================================
+   REALTYKEY AI — FINAL UI NORMALIZATION
+   Keep the existing design system; only fix stacking/visibility
+   problems that previously exposed floating UI as page content.
+========================================================== */
+
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 2500;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
+}
+
+.auth-actions,
+.user-menu,
+.user-info,
+.dynamic-account-links {
+    display: flex;
+    align-items: center;
+}
+
+.user-menu {
+    gap: 10px;
+}
+
+.user-info { gap: 8px; }
+
+.dynamic-account-links {
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+/* Comparison: fixed, centered, hidden until active. */
+.compare-floating-bar {
+    position: fixed !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 24px !important;
+    transform: translateX(-50%) !important;
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: max-content;
+    max-width: calc(100vw - 32px);
+    padding: 12px 18px;
+    border-radius: 16px;
+    z-index: 4000 !important;
+}
+
+.compare-floating-bar.active {
+    display: flex !important;
+}
+
+.compare-floating-bar button {
+    flex: 0 0 auto;
+}
+
+/* Comparison modal: never become normal document content. */
+.overlay-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 5000 !important;
+}
+
+.overlay-modal.active {
+    display: flex !important;
+}
+
+.overlay-modal-card {
+    width: min(1000px, 96vw) !important;
+    max-height: 88vh !important;
+    overflow: auto !important;
+}
+
+#compareModalContent {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior: contain;
+}
+
+.compare-modal-table {
+    min-width: 760px;
+}
+
+/* Login-required modal. */
+.auth-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 5100 !important;
+}
+
+.auth-modal.active {
+    display: flex !important;
+}
+
+/* AI assistant: fixed bottom-right panel, never inline in page flow. */
+.ai-assistant-toggle {
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 24px !important;
+    z-index: 4100 !important;
+}
+
+.ai-assistant-panel {
+    position: fixed !important;
+    right: 24px !important;
+    bottom: 94px !important;
+    width: min(390px, calc(100vw - 32px)) !important;
+    height: min(540px, calc(100vh - 130px)) !important;
+    display: none !important;
+    z-index: 4101 !important;
+}
+
+.ai-assistant-panel.active {
+    display: flex !important;
+}
+
+.assistant-messages {
+    overflow-y: auto !important;
+}
+
+.assistant-input-bar {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid #e2e8f0;
+    background: #fff;
+}
+
+.assistant-input-bar input {
+    min-width: 0;
+    flex: 1;
+}
+
+.assistant-input-bar button {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 62px;
+}
+
+/* Valuation: keep the complete dark card layout together. */
+#aiValuationSection {
+    padding-top: 92px !important;
+    padding-bottom: 92px !important;
+}
+
+#aiValuationSection .valuation-wrapper {
+    width: 100%;
+}
+
+#aiValuationSection .valuation-form-grid > div {
+    min-width: 0;
+}
+
+#aiValuationSection .valuation-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22px;
+}
+
+#valResultBox {
+    margin-top: 22px;
+}
+
+/* Prevent default browser form controls from becoming huge inline blocks. */
+#aiValuationSection input,
+#aiValuationSection select {
+    box-sizing: border-box;
+}
+
+@media (max-width: 1100px) {
+    .nav-links { gap: 13px; }
+    .nav-actions { gap: 7px; }
+    .dynamic-account-links a,
+    .admin-nav-link,
+    .auth-link { padding-left: 7px; padding-right: 7px; }
+}
+
+@media (max-width: 900px) {
+    .compare-floating-bar {
+        left: 16px !important;
+        right: 16px !important;
+        bottom: 16px !important;
+        width: auto;
+        max-width: none;
+        transform: none !important;
+    }
+
+    .ai-assistant-toggle {
+        right: 16px !important;
+        bottom: 84px !important;
+    }
+
+    .ai-assistant-panel {
+        right: 16px !important;
+        bottom: 150px !important;
+    }
+}
+
+@media (max-width: 700px) {
+    #aiValuationSection {
+        width: auto !important;
+        margin: 0 !important;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+
+    .compare-floating-bar {
+        gap: 8px;
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+
+    .compare-floating-bar .primary-button {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+}
+
+/* ============================================================
+   REALTYKEY AI - FINAL UI OVERRIDE
+   Paste this at the VERY END of style.css
+============================================================ */
+
+/* ---------- GLOBAL ---------- */
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+body {
+    background: #f6f8fb;
+    color: #172033;
+}
+
+
+/* ---------- NAVIGATION ---------- */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1500;
+    min-height: 74px;
+    background: rgba(255,255,255,.97);
+    border-bottom: 1px solid #e5e7eb;
+    backdrop-filter: blur(14px);
+}
+
+.nav-links {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+}
+
+.nav-links a {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    color: #667085;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.nav-links a:hover {
+    color: #315efb;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+
+/* ---------- PROPERTY CARDS ---------- */
+
+.property-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid #e1e6ef;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(15,23,42,.05);
+    min-width: 0;
+}
+
+.property-image {
+    position: relative;
+    height: 230px;
+    background: #eef2f6;
+}
+
+.property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.property-content {
+    padding: 18px;
+}
+
+
+/* ---------- COMPARE CHECKBOX ---------- */
+
+.card-compare-check {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    z-index: 20 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+
+    width: auto !important;
+    margin: 0 !important;
+    padding: 7px 9px !important;
+
+    background: rgba(255,255,255,.96) !important;
+    border: 1px solid #d9e0ea !important;
+    border-radius: 9px !important;
+
+    color: #344054 !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(15,23,42,.08);
+}
+
+.card-compare-check input {
+    width: 14px !important;
+    height: 14px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    accent-color: #315efb;
+    cursor: pointer !important;
+}
+
+
+/* ---------- FAVORITE ---------- */
+
+.favorite-button {
+    position: absolute !important;
+    right: 12px !important;
+    top: 48px !important;
+
+    width: 36px !important;
+    height: 36px !important;
+
+    border-radius: 50% !important;
+    border: 1px solid #dbe2eb !important;
+
+    background: #fff !important;
+    color: #172033 !important;
+
+    font-size: 18px !important;
+    cursor: pointer !important;
+}
+
+.favorite-button.active {
+    background: #315efb !important;
+    border-color: #315efb !important;
+    color: #fff !important;
+}
+
+
+/* ---------- AI VALUATION ---------- */
+
+.prediction-section {
+    width: min(1180px,92%);
+    margin: 0 auto;
+    padding: 70px 0;
+}
+
+.prediction-header {
+    margin-bottom: 24px;
+}
+
+.prediction-header h2 {
+    margin: 7px 0 9px;
+    color: #172033;
+    font: 800 40px/1.1 Manrope, sans-serif;
+}
+
+.prediction-header h2 span {
+    color: #315efb;
+}
+
+.prediction-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.prediction-card {
+    display: grid !important;
+    grid-template-columns: 1.1fr .9fr !important;
+    gap: 24px !important;
+
+    padding: 26px !important;
+
+    background: #0f172a !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 24px !important;
+
+    color: #fff !important;
+    box-shadow: 0 20px 70px rgba(15,23,42,.16);
+}
+
+.prediction-form {
+    display: grid !important;
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    gap: 14px !important;
+}
+
+.prediction-field {
+    min-width: 0;
+}
+
+.prediction-field label {
+    display: block !important;
+    margin-bottom: 7px !important;
+
+    color: #94a3b8 !important;
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    letter-spacing: .08em;
+}
+
+.prediction-field input,
+.prediction-field select {
+    width: 100% !important;
+    min-height: 44px !important;
+
+    padding: 11px 13px !important;
+
+    background: #111c30 !important;
+    color: #fff !important;
+
+    border: 1px solid #2d3a4f !important;
+    border-radius: 10px !important;
+
+    outline: none !important;
+}
+
+.prediction-field input:focus,
+.prediction-field select:focus {
+    border-color: #315efb !important;
+    box-shadow: 0 0 0 3px rgba(49,94,251,.16) !important;
+}
+
+.prediction-button {
+    grid-column: 1 / -1 !important;
+
+    min-height: 46px !important;
+
+    border: 0 !important;
+    border-radius: 11px !important;
+
+    background: #315efb !important;
+    color: #fff !important;
+
+    font-size: 12px !important;
+    font-weight: 900 !important;
+
+    cursor: pointer !important;
+}
+
+.prediction-button:hover {
+    background: #264cd0 !important;
+}
+
+.prediction-result {
+    min-height: 360px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+
+    padding: 22px !important;
+
+    background: linear-gradient(145deg,#111c30,#0b1220) !important;
+    border: 1px solid #263349 !important;
+    border-radius: 18px !important;
+}
+
+.prediction-result-placeholder {
+    text-align: center;
+    color: #cbd5e1;
+}
+
+.prediction-ai-icon {
+    width: 50px !important;
+    height: 50px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    margin: 0 auto 14px !important;
+
+    background: #eff4ff !important;
+    color: #315efb !important;
+
+    border-radius: 15px !important;
+
+    font-weight: 900 !important;
+}
+
+.prediction-result h3 {
+    margin: 0 0 8px !important;
+
+    color: #fff !important;
+    font: 800 22px Manrope,sans-serif !important;
+}
+
+.prediction-result p {
+    color: #94a3b8 !important;
+    font-size: 12px !important;
+    line-height: 1.6 !important;
+}
+
+
+/* ---------- RATE CALCULATOR ---------- */
+
+.rate-section {
+    width: min(1180px,92%);
+    margin: 0 auto;
+    padding: 70px 0;
+}
+
+.rate-card {
+    padding: 24px !important;
+
+    background: #0f172a !important;
+    color: #fff !important;
+
+    border: 1px solid #1e293b !important;
+    border-radius: 24px !important;
+
+    box-shadow: 0 20px 70px rgba(15,23,42,.16);
+}
+
+.rate-grid {
+    display: grid !important;
+    grid-template-columns: repeat(5,minmax(0,1fr)) auto !important;
+    gap: 12px !important;
+}
+
+.rate-card .search-field label {
+    color: #94a3b8 !important;
+}
+
+.rate-card .search-field input,
+.rate-card .search-field select {
+    background: #111c30 !important;
+    color: #fff !important;
+    border-color: #2d3a4f !important;
+}
+
+.rate-result {
+    margin-top: 18px !important;
+    padding: 18px !important;
+
+    background: #151f32 !important;
+    border: 1px solid #2d3a4f !important;
+    border-radius: 16px !important;
+}
+
+
+/* ---------- COMPARISON FLOATING BAR ---------- */
+
+#compareFloatingBar {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 18px !important;
+
+    z-index: 4000 !important;
+
+    display: none !important;
+    pointer-events: none !important;
+}
+
+#compareFloatingBar.active {
+    display: block !important;
+}
+
+#compareFloatingBar .compare-floating-inner {
+    width: min(1180px,94%) !important;
+    margin: 0 auto !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 15px !important;
+
+    padding: 14px 16px !important;
+
+    background: #0b1220 !important;
+    border: 1px solid #25334a !important;
+    border-radius: 16px !important;
+
+    box-shadow: 0 20px 60px rgba(15,23,42,.35) !important;
+
+    pointer-events: auto !important;
+}
+
+.compare-floating-summary strong {
+    display: block;
+    color: #fff;
+    font-size: 14px;
+}
+
+.compare-floating-summary span {
+    display: block;
+    margin-top: 3px;
+    color: #b7c2d7;
+    font-size: 11px;
+}
+
+.compare-floating-actions {
+    display: flex !important;
+    gap: 8px !important;
+}
+
+.compare-clear-btn,
+.compare-now-btn {
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+
+    font-size: 12px !important;
+    font-weight: 900 !important;
+
+    cursor: pointer !important;
+}
+
+.compare-clear-btn {
+    background: #111c30 !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #334155 !important;
+}
+
+.compare-now-btn {
+    background: #315efb !important;
+    color: #fff !important;
+    border: 1px solid #315efb !important;
+}
+
+.compare-now-btn:disabled {
+    opacity: .45 !important;
+    cursor: not-allowed !important;
+}
+
+
+/* ---------- COMPARISON MODAL ---------- */
+
+.overlay-modal {
+    position: fixed !important;
+    inset: 0 !important;
+
+    z-index: 3900 !important;
+
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 18px !important;
+
+    background: rgba(15,23,42,.65) !important;
+    backdrop-filter: blur(7px);
+}
+
+.overlay-modal.active {
+    display: flex !important;
+}
+
+.overlay-modal-card {
+    position: relative !important;
+
+    width: min(980px,96vw) !important;
+    max-height: 90vh !important;
+
+    overflow: auto !important;
+
+    padding: 26px !important;
+
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+
+    box-shadow: 0 30px 90px rgba(15,23,42,.28) !important;
+}
+
+.compare-modal-card {
+    width: min(1120px,96vw) !important;
+}
+
+.compare-modal-header {
+    margin-bottom: 18px;
+    padding-right: 45px;
+}
+
+.compare-modal-header h2 {
+    margin: 6px 0;
+    color: #172033;
+    font: 800 30px Manrope,sans-serif;
+}
+
+.compare-modal-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.compare-modal-content {
+    max-height: 64vh !important;
+    overflow: auto !important;
+}
+
+.compare-table-wrap {
+    overflow: auto !important;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+.compare-modal-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+}
+
+.compare-modal-table th,
+.compare-modal-table td {
+    padding: 12px 13px;
+
+    border-bottom: 1px solid #eef2f6;
+
+    text-align: left;
+    vertical-align: top;
+
+    font-size: 12px;
+}
+
+.compare-modal-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #f8fafc;
+}
+
+.compare-modal-table tbody th {
+    width: 150px;
+    background: #fbfcfd;
+    color: #475467;
+    font-weight: 800;
+}
+
+
+/* ---------- AUTH MODAL ---------- */
+
+.auth-modal {
+    position: fixed !important;
+    inset: 0 !important;
+
+    z-index: 4100 !important;
+
+    display: none !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 18px !important;
+
+    background: rgba(15,23,42,.65) !important;
+    backdrop-filter: blur(7px);
+}
+
+.auth-modal.active {
+    display: flex !important;
+}
+
+.auth-modal-card {
+    position: relative !important;
+
+    width: min(430px,94vw) !important;
+
+    padding: 28px !important;
+
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+
+    text-align: center !important;
+
+    box-shadow: 0 30px 90px rgba(15,23,42,.28) !important;
+}
+
+.auth-modal-icon {
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 0 auto 14px;
+
+    background: #eff4ff;
+    color: #315efb;
+
+    border-radius: 14px;
+}
+
+.auth-modal-card h3 {
+    margin: 0 0 7px;
+    color: #172033;
+    font: 800 24px Manrope,sans-serif;
+}
+
+.auth-modal-card p {
+    margin: 0 0 18px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.auth-modal-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+}
+
+.modal-login,
+.modal-signup {
+    min-height: 44px;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 10px !important;
+
+    text-decoration: none !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+}
+
+.modal-login {
+    background: #315efb !important;
+    color: #fff !important;
+}
+
+.modal-signup {
+    background: #fff !important;
+    color: #315efb !important;
+    border: 1px solid #bfcfff !important;
+}
+
+
+/* ---------- AI ASSISTANT ---------- */
+
+#assistantToggle {
+    position: fixed !important;
+    right: 22px !important;
+    bottom: 22px !important;
+
+    z-index: 3800 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+
+    padding: 10px 13px 10px 10px !important;
+
+    border: 1px solid #d5def5 !important;
+    border-radius: 999px !important;
+
+    background: #fff !important;
+    color: #172033 !important;
+
+    box-shadow: 0 16px 45px rgba(15,23,42,.16) !important;
+
+    font-size: 11px !important;
+    font-weight: 900 !important;
+
+    cursor: pointer !important;
+}
+
+.assistant-toggle-icon {
+    width: 30px !important;
+    height: 30px !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    background: #315efb !important;
+    color: #fff !important;
+
+    border-radius: 10px !important;
+}
+
+#assistantPanel {
+    position: fixed !important;
+
+    right: 22px !important;
+    bottom: 76px !important;
+
+    width: min(390px,calc(100vw - 34px)) !important;
+    height: min(610px,calc(100vh - 110px)) !important;
+
+    z-index: 3800 !important;
+
+    display: none !important;
+    flex-direction: column !important;
+
+    overflow: hidden !important;
+
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+
+    box-shadow: 0 26px 80px rgba(15,23,42,.20) !important;
+}
+
+#assistantPanel.active {
+    display: flex !important;
+}
+
+.assistant-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+
+    padding: 17px 18px !important;
+
+    border-bottom: 1px solid #eef2f6 !important;
+}
+
+.assistant-header h3 {
+    margin: 4px 0 !important;
+    color: #172033 !important;
+    font: 800 18px Manrope,sans-serif !important;
+}
+
+.assistant-header p {
+    margin: 0 !important;
+    color: #64748b !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+}
+
+.assistant-close {
+    width: 32px !important;
+    height: 32px !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    background: #f3f5f8 !important;
+    color: #667085 !important;
+
+    cursor: pointer !important;
+    font-size: 20px !important;
+}
+
+.assistant-messages {
+    flex: 1 !important;
+    overflow: auto !important;
+
+    padding: 15px !important;
+
+    background: #f7f9fc !important;
+}
+
+.assistant-bubble {
+    max-width: 85% !important;
+
+    margin-bottom: 9px !important;
+    padding: 10px 12px !important;
+
+    border-radius: 13px !important;
+
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+
+    white-space: pre-line !important;
+}
+
+.assistant-bubble.bot {
+    background: #fff !important;
+    color: #334155 !important;
+    border: 1px solid #e3e8ef !important;
+}
+
+.assistant-bubble.user {
+    margin-left: auto !important;
+    background: #315efb !important;
+    color: #fff !important;
+}
+
+.assistant-quick-prompts {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+
+    padding: 10px 12px !important;
+
+    border-top: 1px solid #eef2f6 !important;
+}
+
+.assistant-quick-prompts button {
+    padding: 6px 8px !important;
+
+    border: 1px solid #dde4ef !important;
+    border-radius: 999px !important;
+
+    background: #fff !important;
+    color: #475467 !important;
+
+    font-size: 10px !important;
+    font-weight: 800 !important;
+
+    cursor: pointer !important;
+}
+
+.assistant-form {
+    display: flex !important;
+    gap: 7px !important;
+
+    padding: 12px !important;
+
+    border-top: 1px solid #eef2f6 !important;
+}
+
+.assistant-form input {
+    flex: 1 !important;
+
+    min-width: 0 !important;
+
+    padding: 11px 12px !important;
+
+    border: 1px solid #d6dce5 !important;
+    border-radius: 10px !important;
+
+    font-size: 12px !important;
+}
+
+.assistant-form button {
+    border: 0 !important;
+    border-radius: 10px !important;
+
+    padding: 0 13px !important;
+
+    background: #315efb !important;
+    color: #fff !important;
+
+    font-size: 11px !important;
+    font-weight: 900 !important;
+
+    cursor: pointer !important;
+}
+
+
+/* ---------- LIST PROPERTY PAGE ---------- */
+
+.list-container {
+    width: min(980px,92%) !important;
+    margin: 40px auto 70px !important;
+}
+
+.list-header {
+    margin-bottom: 28px !important;
+}
+
+.list-header h1 {
+    margin: 0 0 8px !important;
+    color: #172033 !important;
+    font: 800 34px Manrope,sans-serif !important;
+}
+
+.list-card {
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+
+    padding: 36px !important;
+
+    box-shadow: 0 12px 35px rgba(15,23,42,.07) !important;
+}
+
+.form-section {
+    margin-bottom: 32px !important;
+    padding-bottom: 28px !important;
+
+    border-bottom: 1px solid #eef2f6 !important;
+}
+
+.form-section:last-of-type {
+    border-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.form-grid-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    gap: 18px !important;
+}
+
+.form-grid-3 {
+    display: grid !important;
+    grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+    gap: 16px !important;
+}
+
+.form-grid-4 {
+    display: grid !important;
+    grid-template-columns: repeat(4,minmax(0,1fr)) !important;
+    gap: 14px !important;
+}
+
+.list-card label {
+    display: block !important;
+    margin-bottom: 6px !important;
+
+    color: #374151 !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+}
+
+.list-card input,
+.list-card select,
+.list-card textarea {
+    width: 100% !important;
+
+    padding: 12px 14px !important;
+
+    background: #fff !important;
+    color: #111827 !important;
+
+    border: 1px solid #d1d5db !important;
+    border-radius: 10px !important;
+}
+
+.upload-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill,minmax(130px,1fr)) !important;
+    gap: 14px !important;
+    margin-top: 16px !important;
+}
+
+.preview-box {
+    position: relative !important;
+    height: 110px !important;
+    overflow: hidden !important;
+
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 10px !important;
+}
+
+.preview-box img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+.preview-remove-btn {
+    position: absolute !important;
+    top: 6px !important;
+    right: 6px !important;
+
+    width: 24px !important;
+    height: 24px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    background: rgba(180,35,24,.9) !important;
+    color: #fff !important;
+
+    cursor: pointer !important;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 1000px) {
+    .nav-links {
+        gap: 15px;
+    }
+
+    .prediction-card {
+        grid-template-columns: 1fr !important;
+    }
+
+    .rate-grid {
+        grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    }
+
+    .form-grid-3,
+    .form-grid-4 {
+        grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .nav-links {
+        display: none !important;
+    }
+
+    .prediction-form,
+    .rate-grid,
+    .form-grid-2,
+    .form-grid-3,
+    .form-grid-4 {
+        grid-template-columns: 1fr !important;
+    }
+
+    .list-card {
+        padding: 22px !important;
+    }
+
+    #assistantToggle {
+        right: 15px !important;
+        bottom: 15px !important;
+    }
+
+    #assistantPanel {
+        right: 10px !important;
+        bottom: 68px !important;
+        width: calc(100vw - 20px) !important;
+    }
+
+    .auth-modal-actions {
+        grid-template-columns: 1fr !important;
+    }
+
+    #compareFloatingBar {
+        bottom: 10px !important;
+    }
+
+    #compareFloatingBar .compare-floating-inner {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+
+    .compare-floating-actions {
+        justify-content: stretch !important;
+    }
+
+    .compare-floating-actions button {
+        flex: 1 !important;
+    }
+}
+/* ============================================================
+   ACCOUNT SETTINGS - DELETE ACCOUNT VISIBILITY
+============================================================ */
+
+#openDeleteAccountBtn {
+    background: #fff !important;
+    border: 1px solid #f1d0cc !important;
+    color: #b42318 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+}
+
+#openDeleteAccountBtn:hover {
+    background: #fff5f3 !important;
+    border-color: #e8aaa3 !important;
+    color: #9f1f16 !important;
+}
+/* ============================================================
+   REALTYKEY AI ASSISTANT - ORIGINAL ROBOT LOGO
+============================================================ */
+
+ /* ============================================================
+   REALTYKEY AI ASSISTANT - LOGO FIX
+============================================================ */
+nslateY(-2px) !important;
+
+/* RealtyKey AI Assistant Logo */
+#assistantToggle .assistant-logo {
+    width: 42px !important;
+    height: 42px !important;
+    display: block !important;
+    object-fit: contain !important;
+    pointer-events: none !important;
+}
+/* ============================================================
+   REALTYKEY AI ASSISTANT - CUSTOM ROBOT LOGO
+============================================================ */
+
+/* ============================================================
+   REALTYKEY AI ASSISTANT - FINAL SIZE & CIRCLE FIX
+============================================================ */
+
+#assistantToggle.ai-assistant-toggle {
+    position: fixed !important;
+    right: 22px !important;
+    bottom: 22px !important;
+
+    width: 68px !important;
+    height: 68px !important;
+    min-width: 68px !important;
+    min-height: 68px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 2px solid #dbe4f7 !important;
+    border-radius: 50% !important;
+
+    background-color: #ffffff !important;
+    background-image: url("/assets/ai-assistant.png") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 62px 62px !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.18),
+        0 2px 8px rgba(49, 94, 251, 0.08) !important;
+
+    cursor: pointer !important;
+}
+
+#assistantToggle.ai-assistant-toggle:hover {
+    background-color: #f8faff !important;
+    transform: translateY(-2px) !important;
+}
+
+#assistantToggle.ai-assistant-toggle > * {
+    display: none !important;
+}
+/* ============================================================
+   AI ASSISTANT - FIX ON INNER PAGES
+   Prevent dynamically-created assistant logo from expanding
+   and pushing page content.
+============================================================ */
+
+#assistantToggle {
+    position: fixed !important;
+    right: 22px !important;
+    bottom: 22px !important;
+
+    width: 68px !important;
+    height: 68px !important;
+    min-width: 68px !important;
+    min-height: 68px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 2px solid #dbe4f7 !important;
+    border-radius: 50% !important;
+
+    background-color: #ffffff !important;
+    background-image: url("/assets/ai-assistant.png") !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 62px 62px !important;
+
+    overflow: hidden !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, .18),
+        0 2px 8px rgba(49, 94, 251, .08) !important;
+
+    cursor: pointer !important;
+    z-index: 9999 !important;
+}
+
+#assistantToggle img {
+    display: none !important;
+}
+
+#assistantToggle:hover {
+    background-color: #f8faff !important;
+    transform: translateY(-2px) !important;
+}
+/* ============================================================
+   REALTYKEY AI - MOBILE NAVBAR FIX
+   Prevent navigation/account controls from overlapping.
+============================================================ */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        min-height: 66px !important;
+        height: auto !important;
+
+        padding: 10px 5% !important;
+
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+
+        gap: 8px !important;
+    }
+
+    .brand {
+        flex: 0 0 auto !important;
+        min-width: 0 !important;
+    }
+
+    .nav-actions {
+        width: 100% !important;
+
+        margin-left: 0 !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+
+        white-space: normal !important;
+    }
+
+    .user-menu {
+        width: 100% !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+
+    .user-info {
+        flex: 0 0 auto !important;
+        margin-left: auto !important;
+    }
+
+    .dynamic-account-links {
+        width: auto !important;
+
+        order: 0 !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+
+        margin-left: auto !important;
+    }
+
+    .dynamic-account-links a,
+    .dynamic-account-links button,
+    .auth-link {
+        white-space: nowrap !important;
+        font-size: 11px !important;
+        padding: 7px 8px !important;
+    }
+
+    .nav-list-property {
+        flex: 0 0 auto !important;
+
+        padding: 8px 10px !important;
+
+        font-size: 10px !important;
     }
 
 }

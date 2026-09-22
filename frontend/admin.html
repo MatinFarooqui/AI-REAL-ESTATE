@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard | RealtyKey AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+/* ============================================================
+   ADMIN DASHBOARD
+============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+
+.navbar {
+    height: 74px;
+    background: #fff;
+    border-bottom: 1px solid #e5e9f0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 6%;
+}
+
+.brand {
+    font: 800 22px "Manrope", sans-serif;
+}
+
+.brand span {
+    color: #3157d5;
+}
+
+.back {
+    color: #667085;
+    font-weight: 600;
+}
+
+/* ============================================================
+   PAGE
+============================================================ */
+
+.page {
+    width: min(1260px, 94%);
+    margin: 0 auto;
+    padding: 30px 0 70px;
+}
+
+.head .label {
+    color: #3157d5;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.head h1 {
+    font: 800 34px "Manrope", sans-serif;
+    margin-top: 5px;
+}
+
+.head p {
+    color: #667085;
+    margin-top: 6px;
+}
+
+/* ============================================================
+   SUMMARY
+============================================================ */
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 22px 0;
+}
+
+.stat {
+    background: #fff;
+    border: 1px solid #e5e9f0;
+    border-radius: 16px;
+    padding: 18px;
+}
+
+.stat small {
+    display: block;
+    color: #98a2b3;
+}
+
+.stat strong {
+    display: block;
+    font: 800 27px "Manrope", sans-serif;
+    margin-top: 4px;
+}
+
+/* ============================================================
+   ADMIN TABLE SECTIONS
+============================================================ */
+
+.section-box {
+    background: #fff;
+    border: 1px solid #e5e9f0;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 18px;
+    overflow: auto;
+}
+
+.section-box h2 {
+    font: 800 21px "Manrope", sans-serif;
+    margin-bottom: 14px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    border-bottom: 1px solid #eef1f5;
+    padding: 11px 10px;
+    font-size: 13px;
+}
+
+.table th {
+    font-size: 11px;
+    color: #667085;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+}
+
+.table a {
+    color: #3157d5;
+    font-weight: 700;
+}
+
+.secondary-button,
+.danger-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+    padding: 8px 10px;
+
+    font-weight: 700;
+    border: 1px solid;
+
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.secondary-button {
+    background: #fff;
+    border-color: #dfe5ec;
+    color: #344054;
+}
+
+.danger-button {
+    background: #fff1f0;
+    border-color: #f7c7c2;
+    color: #b42318;
+}
+
+.admin-denied {
+    background: #fff;
+    border: 1px solid #e5e9f0;
+    border-radius: 20px;
+    padding: 50px;
+    text-align: center;
+}
+
+.admin-denied h1 {
+    font: 800 27px "Manrope", sans-serif;
+    margin-bottom: 7px;
+}
+
+.admin-denied p {
+    color: #667085;
+}
+
+/* ============================================================
+   REALTYKEY AI ASSISTANT
+   Scoped specifically to this page.
+   Does not alter the admin dashboard layout.
+============================================================ */
+
+#assistantToggle {
+    position: fixed !important;
+
+    right: 22px !important;
+    bottom: 22px !important;
+
+    width: 68px !important;
+    height: 68px !important;
+    min-width: 68px !important;
+    min-height: 68px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: 2px solid #dbe4f7 !important;
+    border-radius: 50% !important;
+
+    background: #fff !important;
+
+    color: transparent !important;
+    font-size: 0 !important;
+    line-height: 1 !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, .18),
+        0 2px 8px rgba(49, 94, 251, .08) !important;
+
+    cursor: pointer !important;
+
+    z-index: 9999 !important;
+}
+
+#assistantToggle:hover {
+    background: #f8faff !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Current robot image */
+#assistantToggle img {
+    display: block !important;
+
+    width: 62px !important;
+    height: 62px !important;
+
+    max-width: 62px !important;
+    max-height: 62px !important;
+
+    object-fit: contain !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    pointer-events: none !important;
+}
+
+/* If an older assistant icon is still generated */
+#assistantToggle .assistant-toggle-icon {
+    display: none !important;
+}
+
+/* Assistant panel */
+#assistantPanel {
+    position: fixed !important;
+
+    right: 22px !important;
+    bottom: 104px !important;
+
+    width: min(390px, calc(100vw - 34px)) !important;
+    height: min(610px, calc(100vh - 125px)) !important;
+
+    display: none !important;
+    flex-direction: column !important;
+
+    overflow: hidden !important;
+
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 20px !important;
+
+    box-shadow:
+        0 26px 80px rgba(15, 23, 42, .20) !important;
+
+    z-index: 9998 !important;
+}
+
+#assistantPanel.active {
+    display: flex !important;
+}
+
+/* Assistant header */
+#assistantPanel .assistant-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+
+    gap: 14px !important;
+
+    padding: 17px 18px !important;
+
+    background: #1e293b !important;
+    color: #fff !important;
+
+    border-bottom: 1px solid #eef2f6 !important;
+}
+
+#assistantPanel .assistant-header h3 {
+    margin: 4px 0 !important;
+
+    color: #fff !important;
+
+    font: 800 18px "Manrope", sans-serif !important;
+}
+
+#assistantPanel .assistant-header p {
+    margin: 0 !important;
+
+    color: #cbd5e1 !important;
+
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+}
+
+#assistantPanel .assistant-header .section-label {
+    color: #93c5fd !important;
+}
+
+#assistantPanel .assistant-close {
+    width: 32px !important;
+    height: 32px !important;
+
+    padding: 0 !important;
+
+    border: 0 !important;
+    border-radius: 50% !important;
+
+    background: rgba(255,255,255,.08) !important;
+
+    color: #fff !important;
+
+    cursor: pointer !important;
+    font-size: 20px !important;
+}
+
+/* Messages area */
+#assistantPanel .assistant-messages {
+    flex: 1 !important;
+
+    overflow-y: auto !important;
+
+    padding: 15px !important;
+
+    background: #f7f9fc !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 9px !important;
+}
+
+#assistantPanel .assistant-bubble {
+    max-width: 85% !important;
+
+    padding: 10px 12px !important;
+
+    border-radius: 13px !important;
+
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+
+    white-space: pre-line !important;
+}
+
+#assistantPanel .assistant-bubble.bot {
+    align-self: flex-start !important;
+
+    background: #fff !important;
+    border: 1px solid #e3e8ef !important;
+
+    color: #334155 !important;
+}
+
+#assistantPanel .assistant-bubble.user {
+    align-self: flex-end !important;
+
+    background: #315efb !important;
+    color: #fff !important;
+}
+
+/* Quick prompts */
+#assistantPanel .assistant-quick-prompts {
+    display: flex !important;
+    flex-wrap: wrap !important;
+
+    gap: 6px !important;
+
+    padding: 10px 12px !important;
+
+    background: #fff !important;
+
+    border-top: 1px solid #eef2f6 !important;
+}
+
+#assistantPanel .assistant-quick-prompts button {
+    padding: 6px 8px !important;
+
+    border: 1px solid #dde4ef !important;
+    border-radius: 999px !important;
+
+    background: #fff !important;
+
+    color: #475467 !important;
+
+    font-size: 10px !important;
+    font-weight: 800 !important;
+
+    cursor: pointer !important;
+}
+
+#assistantPanel .assistant-quick-prompts button:hover {
+    background: #f5f8ff !important;
+    border-color: #bfd0ff !important;
+    color: #315efb !important;
+}
+
+/* Assistant form */
+#assistantPanel .assistant-form {
+    display: flex !important;
+
+    gap: 7px !important;
+
+    padding: 12px !important;
+
+    background: #fff !important;
+
+    border-top: 1px solid #eef2f6 !important;
+}
+
+#assistantPanel .assistant-form input {
+    flex: 1 !important;
+    min-width: 0 !important;
+
+    padding: 11px 12px !important;
+
+    border: 1px solid #d6dce5 !important;
+    border-radius: 10px !important;
+
+    outline: none !important;
+
+    font-size: 12px !important;
+}
+
+#assistantPanel .assistant-form input:focus {
+    border-color: #315efb !important;
+    box-shadow: 0 0 0 3px rgba(49, 94, 251, .10) !important;
+}
+
+#assistantPanel .assistant-form button {
+    flex: 0 0 auto !important;
+
+    border: 0 !important;
+    border-radius: 10px !important;
+
+    padding: 0 13px !important;
+
+    background: #315efb !important;
+    color: #fff !important;
+
+    font-size: 11px !important;
+    font-weight: 900 !important;
+
+    cursor: pointer !important;
+}
+
+#assistantPanel .assistant-form button:hover {
+    background: #264cd0 !important;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 900px) {
+
+    .summary {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .navbar {
+        height: 66px;
+        padding: 0 4%;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .page {
+        width: 94%;
+        padding-top: 22px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .section-box {
+        padding: 16px;
+    }
+
+    #assistantToggle {
+        width: 62px !important;
+        height: 62px !important;
+
+        right: 15px !important;
+        bottom: 15px !important;
+    }
+
+    #assistantToggle img {
+        width: 56px !important;
+        height: 56px !important;
+    }
+
+    #assistantPanel {
+        right: 10px !important;
+        bottom: 88px !important;
+
+        width: calc(100vw - 20px) !important;
+        height: calc(100vh - 115px) !important;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <a href="index.html" class="brand">
+        RealtyKey <span>AI</span>
+    </a>
+
+    <a href="index.html" class="back">
+        ← Main Site
+    </a>
+</nav>
+
+<main class="page" id="adminPage">
+
+    <div class="head">
+        <div class="label">ADMINISTRATION</div>
+
+        <h1>RealtyKey AI Admin</h1>
+
+        <p>
+            Manage users, properties and reported content.
+        </p>
+    </div>
+
+    <div class="summary">
+
+        <div class="stat">
+            <small>Users</small>
+            <strong id="adminUsersCount">—</strong>
+        </div>
+
+        <div class="stat">
+            <small>Properties</small>
+            <strong id="adminPropertiesCount">—</strong>
+        </div>
+
+        <div class="stat">
+            <small>Open reports</small>
+            <strong id="adminReportsCount">—</strong>
+        </div>
+
+        <div class="stat">
+            <small>Conversations</small>
+            <strong id="adminConversationsCount">—</strong>
+        </div>
+
+    </div>
+
+    <section class="section-box">
+
+        <h2>All User Properties</h2>
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Location</th>
+                    <th>Owner</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="adminPropertiesTable"></tbody>
+
+        </table>
+
+    </section>
+
+    <section class="section-box">
+
+        <h2>Reports</h2>
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Reason</th>
+                    <th>Details</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="adminReportsTable"></tbody>
+
+        </table>
+
+    </section>
+
+    <section class="section-box">
+
+        <h2>Registered Users</h2>
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="adminUsersTable"></tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>

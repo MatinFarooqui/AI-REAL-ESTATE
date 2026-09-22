@@ -5,16 +5,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
 # ==========================================
-# AI REAL ESTATE - PRICE PREDICTION V3
+# AI REAL ESTATE - PRICE PREDICTION V2
 # ==========================================
 
 print("\n==========================================")
-print("AI REAL ESTATE - PRICE PREDICTION V3")
+print("AI REAL ESTATE - PRICE PREDICTION V2")
 print("==========================================")
 
 
@@ -161,20 +161,21 @@ preprocessor = ColumnTransformer(
 
 
 # ==========================================
-# GRADIENT BOOSTING MODEL
+# RANDOM FOREST MODEL
 # ==========================================
 
-model = GradientBoostingRegressor(
+model = RandomForestRegressor(
 
     n_estimators=300,
 
-    learning_rate=0.05,
+    random_state=42,
 
-    max_depth=5,
+    n_jobs=-1,
 
-    min_samples_leaf=3,
+    min_samples_leaf=2,
 
-    random_state=42
+    max_features="sqrt"
+
 )
 
 
@@ -209,7 +210,7 @@ print("\n==========================================")
 print("TRAINING MODEL")
 print("==========================================")
 
-print("\nTraining Gradient Boosting V3...")
+print("\nTraining Random Forest V2...")
 print("Please wait...")
 
 
@@ -261,7 +262,7 @@ r2 = r2_score(
 # ==========================================
 
 print("\n==========================================")
-print("MODEL V3 PERFORMANCE")
+print("MODEL V2 PERFORMANCE")
 print("==========================================")
 
 
@@ -284,7 +285,7 @@ print(
 # SAVE MODEL
 # ==========================================
 
-model_file = "real_estate_price_model_v3.pkl"
+model_file = "real_estate_price_model_v2.pkl"
 
 
 joblib.dump(
@@ -294,7 +295,7 @@ joblib.dump(
 
 
 print("\n==========================================")
-print("MODEL V3 SAVED")
+print("MODEL V2 SAVED")
 print("==========================================")
 
 
@@ -313,21 +314,21 @@ print("==========================================")
 
 
 print("V1 Random Forest R² : 0.4006")
-print("V2 Random Forest R² : 0.4569")
-print(f"V3 Gradient Boosting R² : {r2:.4f}")
+print("Existing/target V2 reference R² : 0.4569")
+print(f"Current training R² : {r2:.4f}")
 
 
 if r2 > 0.4569:
 
-    print("\nV3 improved over V2.")
+    print("\nCurrent training improved over the reference R².")
 
 elif r2 == 0.4569:
 
-    print("\nV3 has the same R² as V2.")
+    print("\nCurrent training matched the reference R².")
 
 else:
 
-    print("\nV3 did not improve over V2.")
+    print("\nCurrent training was below the reference R².")
 
 
-print("\nPrice prediction model V3 is ready!")
+print("\nPrice prediction model V2 training workflow is ready!")
