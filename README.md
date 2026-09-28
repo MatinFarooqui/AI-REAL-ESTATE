@@ -1,332 +1,142 @@
 # RealtyKey AI
-### Smarter Property Decisions
 
-RealtyKey AI is an AI-powered real estate platform developed as a final-year engineering project. It combines property discovery, intelligent recommendations, machine-learning-based valuation, property comparison, favorites, direct buyer-seller communication, offers, reporting, and user property listings in one platform.
+**Smarter Property Decisions**
 
-The project is designed to demonstrate how **web development, machine learning, databases, APIs, and cloud/deployment concepts** can work together in a real-world application.
+An AI-enabled real-estate platform for discovering and comparing properties, managing listings, and estimating property values with a trained machine-learning model.
 
----
+**Live Demo:** [realtykey-ai.vercel.app](https://realtykey-ai.vercel.app)<br>
+**Repository:** [MatinFarooqui/AI-REAL-ESTATE](https://github.com/MatinFarooqui/AI-REAL-ESTATE)
 
-## Project Overview
+## Overview
 
-Traditional property platforms mainly focus on listing and searching properties. RealtyKey AI extends this workflow by adding intelligent features that help users understand and evaluate properties.
+RealtyKey AI is a functional final-year B.Tech project that brings property search, user listings, buyer-seller communication, recommendations, and valuation into one web application. The browser frontend uses HTML, CSS, and JavaScript; a Flask application provides the API and integrates with MongoDB, the valuation engine, geocoding, and Vercel Blob uploads.
 
-The platform allows users to:
+## Key Features
 
-- Search properties by State, City, and Locality
-- Refine results using price, area, BHK, bathrooms, parking, facing, furnishing, and property-age filters
-- View detailed property information and images
-- Calculate property rate per square foot
-- Estimate property value using a machine-learning valuation engine
-- View valuation range, confidence, geographic coverage, and supporting factors
-- Compare 2–4 properties side by side
-- Receive explainable property recommendations
-- Save properties to Favorites
-- List and publish their own properties
-- Upload multiple property images
-- Detect property location using GPS
-- Chat directly with property owners
-- Make and manage property offers
-- Report suspicious or incorrect listings
-- Receive account and marketplace notifications
-- Manage listings through My Listings
-- Use an AI Assistant for platform guidance
-- Manage users, properties, and reports through an Admin Dashboard
+- Account signup, login, session-based authentication, and account management
+- Property browsing by state, city, and locality, with price, area, type, and property-detail filters
+- Property detail pages, rate-per-square-foot calculator, and GPS-assisted location lookup
+- Authenticated property listings with image uploads stored in Vercel Blob
+- V6 machine-learning valuation combined with geographic benchmarks
+- Property recommendations with match explanations
+- Favorites and side-by-side comparison of two to four properties
+- Buyer-seller conversations, offers, and marketplace notifications
+- Property reporting and administrator controls for users, listings, and reports
+- A deterministic assistant for guidance on platform workflows
 
----
+## AI Valuation
 
-## Main Features
+The valuation engine loads the V6 bundle first and retains a V2 fallback. V6 is a scikit-learn Random Forest regression model with a preprocessing component and geographic benchmark tables. The prediction inputs are city, locality, property type, BHK, area, bathrooms, and balcony. The engine blends the model estimate with a benchmark selected from locality, city, state, or national coverage, then returns an estimate and range with coverage and explanatory information. If an asking price is provided, it is evaluated separately for an anomaly indication.
 
-### 1. Property Search
-
-Users can browse active marketplace properties using:
-
-- State
-- City
-- Locality
-- Sale / Rent
-- Property Type
-- Minimum / Maximum Price
-- Area
-- BHK
-- Bathrooms
-- Parking
-- Facing
-- Furnishing
-- Property Age
-
-The platform also supports location-based browsing and GPS-assisted location detection.
-
----
-
-### 2. Property Rate Calculator
-
-The Rate Calculator calculates the property's price per square foot using:
-
-`Total Price ÷ Area`
-
-Example:
-
-`₹7,500,000 ÷ 1,200 sq ft = ₹6,250 / sq ft`
-
----
-
-### 3. AI Property Valuation
-
-RealtyKey AI uses a trained machine-learning model together with geographic benchmark information to estimate property value.
-
-The valuation workflow considers information such as:
-
-- State
-- City
-- Locality
-- Property Type
-- Area
-- BHK
-- Bathrooms
-- Available geographic benchmark data
-
-The system can use broader geographic coverage when detailed locality-level data is limited.
-
-The valuation interface can display:
-
-- Estimated Market Value
-- Estimated Price Range
-- Rate per Square Foot
-- Confidence Level
-- Geographic Coverage Level
-- Valuation Factors
-- Model Weight
-- Benchmark Information
-- Validation Metrics
-- Asking-price anomaly information when an asking price is supplied
-
-The asking price is checked separately for anomaly analysis and is not intended to directly determine the estimated value.
-
----
-
-### 4. Explainable Recommendations
-
-The recommendation engine matches properties with user preferences such as:
-
-- Location
-- Listing type
-- Property type
-- Budget
-- Area
-- BHK
-- Bathrooms
-- Parking
-- Facing
-- Furnishing
-
-Each recommendation can include reasons explaining why the property matched the selected requirements.
-
----
-
-### 5. Property Comparison
-
-Users can select **2 to 4 properties** and compare them side by side.
-
-Comparison information includes:
-
-- Asking Price
-- AI Estimated Value
-- AI Price Range
-- AI Confidence
-- AI Status
-- Location
-- Property Type
-- Listing Type
-- Area
-- BHK
-- Bathrooms
-- Parking
-- Facing
-- Furnishing
-- Property Details
-
----
-
-### 6. User Property Listings
-
-Authenticated users can publish properties directly to the marketplace.
-
-Supported property types:
-
-- Apartment
-- House / Villa
-- Plot
-
-Users can provide:
-
-- Listing Type
-- Price / Rent
-- Location
-- Property Details
-- Description
-- Amenities
-- GPS Coordinates
-- Property Images
-
-Published listings have an active lifecycle and can be managed through **My Listings**.
-
----
-
-### 7. Favorites
-
-Users can save properties using the Favorites feature.
-
-Saved properties remain associated with the authenticated user's account.
-
----
-
-### 8. Buyer-Seller Communication
-
-Users can communicate directly regarding user-owned marketplace listings.
-
-The platform supports:
-
-- Buyer-seller chat
-- Quick messages
-- Stored conversations
-- Message notifications
-- Conversation history
-
----
-
-### 9. Offers
-
-Buyers can submit an offer for a user-owned property.
-
-Sellers can:
-
-- Accept an offer
-- Reject an offer
-
-Offer status changes are stored and reflected through the application.
-
----
-
-### 10. Property Reporting
-
-Users can report potentially problematic listings.
-
-Supported report categories include:
-
-- Suspicious / Scam
-- Fake Information
-- Duplicate Listing
-- Incorrect Details
-- Other
-
-Reports are available for administrator review.
-
----
-
-### 11. AI Assistant
-
-The RealtyKey AI Assistant provides deterministic platform guidance for common questions about:
-
-- Property Search
-- Property Listing
-- AI Valuation
-- Property Comparison
-- Recommendations
-- Favorites
-- Chat
-- Offers
-- Reports
-- Account Settings
-- Platform Information
-
-The assistant is designed as a lightweight project feature without requiring a paid external generative-AI service.
-
----
-
-### 12. Admin Dashboard
-
-The Admin Dashboard provides administrative controls for:
-
-- User management
-- User property management
-- Report review
-- Property removal
-- User activation / deactivation
-- Report resolution
-- Marketplace oversight
-
-Administrative functions are restricted to the configured administrator account.
-
----
+The production artifact is `ml/real_estate_price_model_v6.pkl` (approximately 114 MB). It is not committed to Git; obtain the project artifact separately and place it at that exact path before running valuation locally or creating a Vercel deployment that needs it. Do not retrain the model as part of normal setup. No validation metrics are quoted here; the application reads them from the model bundle.
 
 ## Technology Stack
 
-### Frontend
-- HTML5
-- CSS3
-- JavaScript
-- Responsive UI
-- Fetch API
+- **Frontend:** HTML5, CSS3, JavaScript, Fetch API
+- **Backend:** Python 3.13–3.14, Flask
+- **Database:** MongoDB Atlas, PyMongo
+- **Machine learning:** scikit-learn, pandas, NumPy, joblib; Random Forest regression
+- **Cloud and deployment:** Vercel Python and Node.js functions
+- **Image storage:** Vercel Blob using the `@vercel/blob` SDK
+- **Location services:** Browser Geolocation API, OpenStreetMap Nominatim
+- **Version control:** Git and GitHub
 
-### Backend
-- Python
-- Flask
-- REST-style API endpoints
-
-### Database
-- MongoDB Atlas
-- PyMongo
-
-### Machine Learning
-- Python
-- Pandas
-- Scikit-learn
-- Random Forest-based property valuation
-- Geographic benchmark-based valuation logic
-
-### Location Services
-- Browser Geolocation API
-- OpenStreetMap / Nominatim
-
-### Development Tools
-- Visual Studio Code
-- Git
-- GitHub
-
----
-
-## System Architecture
+## Architecture
 
 ```text
-                    ┌─────────────────────────┐
-                    │       User / Browser    │
-                    └────────────┬────────────┘
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │ HTML / CSS / JavaScript │
-                    │       Frontend          │
-                    └────────────┬────────────┘
-                                 │
-                         HTTP / Fetch API
-                                 │
-                                 ▼
-                    ┌─────────────────────────┐
-                    │      Flask Backend      │
-                    │        Python           │
-                    └───────┬─────────┬───────┘
-                            │         │
-              ┌─────────────┘         └─────────────┐
-              ▼                                       ▼
-    ┌──────────────────┐                  ┌────────────────────┐
-    │   MongoDB Atlas  │                  │ ML Valuation Engine│
-    │ Users / Listings │                  │ Random Forest +    │
-    │ Messages / Offers│                  │ Geographic Data    │
-    └──────────────────┘                  └────────────────────┘
-                            │
-                            ▼
-                  ┌────────────────────┐
-                  │ OpenStreetMap /    │
-                  │ Nominatim Services │
-                  └────────────────────┘
+Browser (HTML/CSS/JavaScript)
+  ├── HTTP requests ──> Flask API
+  │                       ├── MongoDB Atlas: accounts, listings, conversations,
+  │                       │   offers, favorites, reports, and notifications
+  │                       ├── V6 valuation engine + geographic benchmarks
+  │                       └── OpenStreetMap Nominatim for geocoding
+  └── Image selection ──> Vercel Blob upload function ──> Vercel Blob
+                          └── Uploaded public URLs are submitted to Flask
+```
+
+The Blob function verifies the existing Flask session through `/auth/me`, prepares a short-lived signed upload URL, and the browser uploads the image directly to Blob. Flask validates the resulting public Blob URLs when saving a listing.
+
+## Project Structure
+
+```text
+AI-REAL-ESTATE/
+├── Backend/                 Flask app, authentication, MongoDB, valuation
+├── api/                     Vercel Blob upload function
+├── data/                    Property data and prepared ML training data
+├── frontend/                HTML pages, shared CSS, and JavaScript
+├── ml/                      Model training scripts
+│   └── real_estate_price_model_v6.pkl  Local deployment artifact; not in Git
+├── package.json             Node dependency for Vercel Blob
+├── pyproject.toml           Python dependencies and Vercel entrypoint
+├── requirements.txt         Python dependency list
+├── .env.example             Environment-variable template
+└── README.md
+```
+
+## Local Setup
+
+### Prerequisites
+
+- Python `>=3.13,<3.15`
+- Node.js 20 or newer and npm
+- A MongoDB Atlas connection string
+- The V6 model artifact at `ml/real_estate_price_model_v6.pkl`
+
+### Install and run
+
+Create a virtual environment, install the Python and Node dependencies, and prepare a local environment file:
+
+```powershell
+py -3.13 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+npm install
+Copy-Item .env.example .env
+```
+
+Set the required values in `.env`, including `MONGO_URI` and `SECRET_KEY`. Set `ADMIN_EMAIL` if this installation needs an administrator account. SMTP settings are needed for email verification. Then run:
+
+```powershell
+python -m Backend.app
+```
+
+Open [http://127.0.0.1:5000](http://127.0.0.1:5000). The Flask server serves the frontend and API. The Blob upload endpoint is a Vercel function; test the complete cloud upload flow in the linked Vercel environment with Blob storage configured. Do not put production credentials in source control.
+
+### Environment variables
+
+Names used by the application include:
+
+- `MONGO_URI` — required MongoDB connection string
+- `SECRET_KEY` — Flask session signing key; set a stable secret for deployed use
+- `ADMIN_EMAIL` — email address granted the administrator role
+- `SESSION_COOKIE_SECURE` — secure-cookie setting
+- `APP_BASE_URL`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_USE_SSL`, `EMAIL_FROM` — email verification configuration
+- `BLOB_READ_WRITE_TOKEN` — Vercel Blob access token; configure it in the Vercel environment, not in Git
+
+See [.env.example](.env.example) for variable names without credentials.
+
+## Deployment
+
+The application is deployed on Vercel at [https://realtykey-ai.vercel.app](https://realtykey-ai.vercel.app). The Vercel Python entrypoint is `Backend.app:app`; the Blob upload endpoint is deployed from `api/blob-upload.js`.
+
+A manual production deployment uses the existing Vercel project and requires the V6 artifact to be present in the deployment source:
+
+```powershell
+vercel deploy --prod --archive=tgz
+```
+
+The model is deliberately not tracked in this repository because of its size. A source checkout without the artifact will not have V6 valuation until the artifact is supplied through the project's existing deployment process.
+
+## Screenshots
+
+No application screenshots are currently included in the repository.
+
+## Future Scope
+
+- Evaluate additional property data sources and model calibration approaches
+- Extend recommendation explanations and user preference controls
+- Improve deployment observability and artifact distribution
+
+## Project Status
+
+RealtyKey AI is a functional, deployed final-year project. The linked demo reflects the current application; the trained model artifact is maintained separately from Git source.
