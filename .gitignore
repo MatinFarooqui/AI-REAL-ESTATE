@@ -25,6 +25,7 @@ uploads/
 # ML artifacts
 ml/*.joblib
 ml/*.pkl
+!ml/real_estate_price_model_v6.pkl
 
 # Vercel
 .vercel/
