@@ -34,7 +34,11 @@ from Backend.valuation_engine import estimate_property_value, get_model_metrics
 BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_FOLDER = BASE_DIR / "frontend"
 DATA_PATH = BASE_DIR / "data" / "properties.csv"
-UPLOAD_FOLDER = BASE_DIR / "uploads" / "properties"
+if os.getenv("VERCEL") == "1" or os.getenv("VERCEL_ENV") in {"production", "preview"}:
+    UPLOAD_FOLDER = Path("/tmp/realtykey-uploads/properties")
+else:
+    UPLOAD_FOLDER = BASE_DIR / "uploads" / "properties"
+
 UPLOAD_FOLDER.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_IMAGE_EXTENSIONS = {"jpg", "jpeg", "png", "webp"}
@@ -1371,28 +1375,51 @@ def list_property():
         bathrooms = 0
         property_age = 0
 
-    uploaded_files = [f for f in request.files.getlist("images") if f and f.filename]
-    if not uploaded_files:
-        return jsonify({"success": False, "error": "Please upload at least 1 property image."}), 400
-    if len(uploaded_files) > MAX_IMAGES:
-        return jsonify({"success": False, "error": f"Maximum {MAX_IMAGES} images allowed."}), 400
-    for image in uploaded_files:
-        valid, error = validate_image(image)
-        if not valid:
-            return jsonify({"success": False, "error": error}), 400
+    image_urls_raw = request.form.get("image_urls")
+    uploaded_files = []
+    image_urls = []
+    if image_urls_raw is not None:
+        try:
+            image_urls = json.loads(image_urls_raw)
+        except (TypeError, json.JSONDecodeError):
+            return jsonify({"success": False, "error": "image_urls must contain valid JSON."}), 400
+        if not isinstance(image_urls, list):
+            return jsonify({"success": False, "error": "image_urls must be a JSON list."}), 400
+        if not image_urls:
+            return jsonify({"success": False, "error": "Please provide at least 1 property image URL."}), 400
+        if len(image_urls) > MAX_IMAGES:
+            return jsonify({"success": False, "error": f"Maximum {MAX_IMAGES} images allowed."}), 400
+        for image_url in image_urls:
+            if (
+                not isinstance(image_url, str)
+                or not image_url.startswith("https://")
+                or "public.blob.vercel-storage.com/" not in image_url
+            ):
+                return jsonify({"success": False, "error": "Each image URL must be a valid Vercel Blob URL."}), 400
+    else:
+        uploaded_files = [f for f in request.files.getlist("images") if f and f.filename]
+        if not uploaded_files:
+            return jsonify({"success": False, "error": "Please upload at least 1 property image."}), 400
+        if len(uploaded_files) > MAX_IMAGES:
+            return jsonify({"success": False, "error": f"Maximum {MAX_IMAGES} images allowed."}), 400
+        for image in uploaded_files:
+            valid, error = validate_image(image)
+            if not valid:
+                return jsonify({"success": False, "error": error}), 400
 
     property_id = next_property_id()
-    prop_dir = UPLOAD_FOLDER / str(property_id)
-    prop_dir.mkdir(parents=True, exist_ok=False)
-    image_urls = []
+    prop_dir = None
 
     try:
-        for image in uploaded_files:
-            safe_name = secure_filename(image.filename)
-            suffix = Path(safe_name).suffix.lower()
-            filename = f"{uuid4().hex}{suffix}"
-            image.save(prop_dir / filename)
-            image_urls.append(f"/uploads/properties/{property_id}/{filename}")
+        if uploaded_files:
+            prop_dir = UPLOAD_FOLDER / str(property_id)
+            prop_dir.mkdir(parents=True, exist_ok=False)
+            for image in uploaded_files:
+                safe_name = secure_filename(image.filename)
+                suffix = Path(safe_name).suffix.lower()
+                filename = f"{uuid4().hex}{suffix}"
+                image.save(prop_dir / filename)
+                image_urls.append(f"/uploads/properties/{property_id}/{filename}")
 
         user = find_user(user_id) or {}
         owner_name = clean_text(user.get("name")) or clean_text(session.get("user_name")) or "Property Owner"

@@ -1,0 +1,24 @@
+{
+  "name": "ai-real-estate",
+  "version": "1.0.0",
+  "description": "RealtyKey AI is an AI-powered real estate platform developed as a final-year engineering project. It combines property discovery, intelligent recommendations, machine-learning-based valuation, property comparison, favorites, direct buyer-seller communication, offers, reporting, and user property listings in one platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatinFarooqui/AI-REAL-ESTATE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MatinFarooqui/AI-REAL-ESTATE/issues"
+  },
+  "homepage": "https://github.com/MatinFarooqui/AI-REAL-ESTATE#readme",
+  "dependencies": {
+    "@vercel/blob": "^2.8.0"
+  }
+}

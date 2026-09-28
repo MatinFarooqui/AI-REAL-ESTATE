@@ -1,9 +1,11 @@
-.env
+﻿.env
 .env.*
 .venv/
 venv/
 uploads/
 *.zip
+node_modules/
+blob-test.txt
 
 ml/real_estate_price_model.pkl
 ml/real_estate_price_model_v2.pkl

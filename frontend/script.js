@@ -2272,6 +2272,8 @@ function setupPropertyListingPage() {
 
     const fileInput=document.getElementById("propertyImagesInput"), grid=document.getElementById("uploadThumbnailsGrid"), drop=document.getElementById("dropZone");
     let selectedFiles=[];
+    let isSubmitting=false;
+    const randomId=()=>{if(window.crypto?.randomUUID)return window.crypto.randomUUID();if(window.crypto?.getRandomValues){const values=new Uint32Array(4);window.crypto.getRandomValues(values);return Array.from(values).map(value=>value.toString(16)).join("");}return `${Date.now()}-${Math.random().toString(36).slice(2)}`;};
     const render=()=>{if(!grid)return;grid.innerHTML="";selectedFiles.forEach((file,i)=>{const box=document.createElement("div");box.className="preview-box";const img=document.createElement("img");img.alt=`Photo ${i+1}`;img.src=URL.createObjectURL(file);const btn=document.createElement("button");btn.type="button";btn.className="preview-remove-btn";btn.textContent="×";btn.addEventListener("click",()=>{selectedFiles.splice(i,1);render();});box.append(img,btn);grid.appendChild(box);});};
     const addFiles=files=>{for(const file of files){if(selectedFiles.length>=20)break;if(!["image/jpeg","image/png","image/webp"].includes(file.type)){alert(`${file.name}: JPG, JPEG, PNG or WEBP only.`);continue;}if(file.size>10*1024*1024){alert(`${file.name}: image exceeds 10 MB.`);continue;}if(!selectedFiles.some(f=>f.name===file.name&&f.size===file.size))selectedFiles.push(file);}render();};
     fileInput?.addEventListener("change",()=>addFiles(Array.from(fileInput.files||[])));
@@ -2284,17 +2286,34 @@ function setupPropertyListingPage() {
         navigator.geolocation.getCurrentPosition(async pos=>{const lat=pos.coords.latitude,lon=pos.coords.longitude;document.getElementById("propLatitude").value=lat;document.getElementById("propLongitude").value=lon;try{const d=await fetchJson(`/reverse-geocode?lat=${lat}&lon=${lon}`);if(d.state)document.getElementById("propState").value=d.state;if(d.city)document.getElementById("propCity").value=d.city;if(d.locality)document.getElementById("propLocality").value=d.locality;if(d.address)document.getElementById("propAddress").value=d.address;if(status)status.textContent=`✓ GPS coordinates detected (${lat.toFixed(4)}, ${lon.toFixed(4)}).`;}catch{if(status)status.textContent=`Coordinates detected (${lat.toFixed(4)}, ${lon.toFixed(4)}).`;}finally{btn.disabled=false;}},()=>{if(status)status.textContent="Unable to retrieve GPS location.";btn.disabled=false;});
     });
     form.addEventListener("submit",async e=>{
-        e.preventDefault();const feedback=document.getElementById("listingFeedback"),submit=document.getElementById("submitListingBtn");if(!selectedFiles.length){feedback.className="status-feedback error";feedback.textContent="Please select at least one property photo.";return;}
-        const fd=new FormData(form);fd.delete("images");selectedFiles.forEach(f=>fd.append("images",f));
-        const t=typeSelector?.value||"Apartment";
-        const area=t==="House"?document.getElementById("houseBuiltUpArea")?.value:t==="Plot"?document.getElementById("plotArea")?.value:document.getElementById("aptBuiltUpArea")?.value;
-        fd.set("area",area||"");
-        const copyName=(id,key)=>{const v=document.getElementById(id)?.value;if(v!==undefined)fd.set(key,v);};
-        if(t==="House"){copyName("houseBhk","bhk");copyName("houseBathrooms","bathrooms");copyName("houseParking","parking");copyName("houseFacing","facing");copyName("houseFurnishing","furnishing");copyName("houseFloors","floors");copyName("housePlotArea","plot_area");copyName("houseLength","length");copyName("houseWidth","width");copyName("houseBuiltUpArea","built_up_area");copyName("houseCarpetArea","carpet_area");}
-        if(t==="Apartment"){copyName("aptBhk","bhk");copyName("aptBathrooms","bathrooms");copyName("aptParking","parking");copyName("aptFacing","facing");copyName("aptFurnishing","furnishing");copyName("aptFloorNum","floor_number");copyName("aptTotalFloors","total_floors");copyName("aptBuiltUpArea","built_up_area");copyName("aptCarpetArea","carpet_area");copyName("aptAge","property_age");}
-        if(t==="Plot"){copyName("plotArea","plot_area");copyName("plotLength","length");copyName("plotWidth","width");copyName("plotFacing","facing");copyName("plotRoadWidth","road_width");copyName("plotParking","parking");}
-        submit.disabled=true;submit.textContent="Publishing Property...";feedback.className="status-feedback";feedback.textContent="";
-        try{const data=await fetchJson("/list-property",{method:"POST",body:fd,credentials:"include"});feedback.className="status-feedback success";feedback.innerHTML=`<strong>✓ Listing Published Successfully!</strong><br>Property ID: #${data.property_id} • Status: Active • Photos: ${data.image_count}<br><a href="${getDetailsUrl({id:data.property_id})}" style="color:#027a48;font-weight:700;text-decoration:underline">View Your Published Property →</a>`;form.reset();selectedFiles=[];render();updateType();}catch(err){feedback.className="status-feedback error";feedback.textContent=err.message;}finally{submit.disabled=false;submit.textContent="Publish Listing Immediately →";}
+        e.preventDefault();const feedback=document.getElementById("listingFeedback"),submit=document.getElementById("submitListingBtn");if(isSubmitting)return;if(!selectedFiles.length){feedback.className="status-feedback error";feedback.textContent="Please select at least one property photo.";return;}
+        isSubmitting=true;submit.disabled=true;feedback.className="status-feedback";feedback.textContent="";
+        try{
+            const listingKey=randomId(),imageUrls=[],extensions={"image/jpeg":"jpg","image/png":"png","image/webp":"webp"};
+            for(let i=0;i<selectedFiles.length;i++){
+                const file=selectedFiles[i];submit.textContent=`Uploading images ${i+1}/${selectedFiles.length}...`;
+                const extension=extensions[file.type]||"jpg";
+                let uploadData;
+                try{uploadData=await fetchJson("/api/blob-upload",{method:"POST",credentials:"include",headers:{"Content-Type":"application/json"},body:JSON.stringify({pathname:`properties/${listingKey}/${randomId()}.${extension}`,contentType:file.type})});}catch(err){if(/401|login|authenticat/i.test(err.message||""))throw new Error("Please log in before uploading property images.");throw new Error(err.message||"Unable to upload property images.");}
+                if(uploadData.success!==true||typeof uploadData.uploadUrl!=="string"||!uploadData.uploadUrl){throw new Error("Unable to upload property images.");}
+                let blobData;
+                const blobResponse=await fetch(uploadData.uploadUrl,{method:"PUT",headers:{"Content-Type":file.type},body:file});
+                if(!blobResponse.ok)throw new Error("Unable to upload property images.");
+                try{blobData=await blobResponse.json();}catch{throw new Error("Unable to confirm property image upload.");}
+                if(typeof blobData?.url!=="string"||!blobData.url.startsWith("https://")||!blobData.url.includes("public.blob.vercel-storage.com/"))throw new Error("Unable to confirm property image upload.");
+                imageUrls.push(blobData.url);
+            }
+            submit.textContent="Publishing Property...";
+            const fd=new FormData(form);fd.delete("images");fd.set("image_urls",JSON.stringify(imageUrls));
+            const t=typeSelector?.value||"Apartment";
+            const area=t==="House"?document.getElementById("houseBuiltUpArea")?.value:t==="Plot"?document.getElementById("plotArea")?.value:document.getElementById("aptBuiltUpArea")?.value;
+            fd.set("area",area||"");
+            const copyName=(id,key)=>{const v=document.getElementById(id)?.value;if(v!==undefined)fd.set(key,v);};
+            if(t==="House"){copyName("houseBhk","bhk");copyName("houseBathrooms","bathrooms");copyName("houseParking","parking");copyName("houseFacing","facing");copyName("houseFurnishing","furnishing");copyName("houseFloors","floors");copyName("housePlotArea","plot_area");copyName("houseLength","length");copyName("houseWidth","width");copyName("houseBuiltUpArea","built_up_area");copyName("houseCarpetArea","carpet_area");}
+            if(t==="Apartment"){copyName("aptBhk","bhk");copyName("aptBathrooms","bathrooms");copyName("aptParking","parking");copyName("aptFacing","facing");copyName("aptFurnishing","furnishing");copyName("aptFloorNum","floor_number");copyName("aptTotalFloors","total_floors");copyName("aptBuiltUpArea","built_up_area");copyName("aptCarpetArea","carpet_area");copyName("aptAge","property_age");}
+            if(t==="Plot"){copyName("plotArea","plot_area");copyName("plotLength","length");copyName("plotWidth","width");copyName("plotFacing","facing");copyName("plotRoadWidth","road_width");copyName("plotParking","parking");}
+            const data=await fetchJson("/list-property",{method:"POST",body:fd,credentials:"include"});feedback.className="status-feedback success";feedback.innerHTML=`<strong>✓ Listing Published Successfully!</strong><br>Property ID: #${data.property_id} • Status: Active • Photos: ${data.image_count}<br><a href="${getDetailsUrl({id:data.property_id})}" style="color:#027a48;font-weight:700;text-decoration:underline">View Your Published Property →</a>`;form.reset();selectedFiles=[];render();updateType();
+        }catch(err){feedback.className="status-feedback error";feedback.textContent=err.message;}finally{isSubmitting=false;submit.disabled=false;submit.textContent="Publish Listing Immediately →";}
     });
 }
 
